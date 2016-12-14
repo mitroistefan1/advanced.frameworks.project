@@ -1,5 +1,4 @@
-package pca.web.bean;
-
+package pca.persistence.model;
 
 public class User {
     private String userName;
@@ -20,5 +19,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }

@@ -1,32 +1,36 @@
 package pca.web.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pca.web.bean.User;
+import org.springframework.web.servlet.ModelAndView;
+import pca.persistence.dto.UserDto;
+import pca.service.authentication.AuthenticationService;
 
 @Controller
 public class LoginController {
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String init(ModelMap models) {
-        models.put("error", " ");
-        return "login";
+
+    @Autowired
+    private AuthenticationService authenticationService;
+
+    @RequestMapping("/login")
+    public ModelAndView showform() {
+
+        return new ModelAndView("login", "command", new UserDto());
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String submit(ModelMap models, @ModelAttribute("User") User user) {
-        System.out.println(user.getUserName()+" "+user.getPassword());
-        if ("stefan.mitroi".equals(user.getUserName()) && "password".equals(user.getPassword())) {
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public ModelAndView save(@ModelAttribute("user") UserDto user) {
 
-            System.out.println("acici");
-            return "home";
+        if (authenticationService.isUserValid(user)) {
+            return new ModelAndView("home");
         } else {
-            models.put("error", " Invalid Details");
-            return "login";
+            return new ModelAndView("error");
         }
+
     }
 
 }
