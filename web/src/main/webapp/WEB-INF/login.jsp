@@ -1,22 +1,43 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
 
-<form:form method="post" action="save">
-    <table >
-        <tr>
-            <td>UserName : </td>
-            <td><form:input path="userName"  /></td>
-        </tr>
-        <tr>
-            <td>Password :</td>
-            <td><form:input path="password" /></td>
-        </tr>
+<h1>
 
-        <tr>
-            <td colspan="2"><input type="submit" value="Save" /></td>
-        </tr>
-    </table>
-</form:form>
+    Login</h1>
+<div id="login-error">
+
+
+    ${error}</div>
+<form action="../../j_spring_security_check" method="post">
+
+
+    <p>
+
+
+        <label for="j_username">Username</label>
+        <input id="j_username" name="j_username" type="text"/>
+    </p>
+    <p>
+
+
+        <label for="j_password">Password</label>
+        <input id="j_password" name="j_password" type="password"/>
+    </p><input type="submit" value="Login"/>
+    <tr>
+        <td>Remember Me:</td>
+        <td><input type="checkbox" name="remember-me" /></td>
+    </tr>
+</form>
+</body>
+</html>

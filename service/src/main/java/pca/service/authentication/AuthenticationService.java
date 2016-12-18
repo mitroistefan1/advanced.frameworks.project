@@ -2,22 +2,22 @@ package pca.service.authentication;
 
 
 import pca.persistence.dao.UserDao;
+import pca.persistence.dao.UserDaoImpl;
 import pca.persistence.dto.UserDto;
 import pca.persistence.model.User;
 
 public class AuthenticationService {
-    private UserDao userDao;
+    private UserDao userDao = new UserDaoImpl();
+    private Converter converter = new Converter();
 
     public boolean isUserValid(UserDto userDto) {
-        return userDao.isValid(convertFromDto(userDto));
+        return userDao.isValid(converter.getUser(userDto));
     }
 
-    private User convertFromDto(UserDto userDto) {
-        User user = new User();
-        user.setUserName(userDto.getUserName());
-        user.setPassword(userDto.getPassword());
-        return user;
+    public UserDto getUser(String userName){
+        return converter.getUserDto(userDao.getUser(userName));
     }
+
 
     public void setUserDao(UserDao userDao) {
 
@@ -28,4 +28,11 @@ public class AuthenticationService {
         return userDao;
     }
 
+    public void setConverter(Converter converter) {
+        this.converter = converter;
+    }
+
+    public Converter getConverter() {
+        return converter;
+    }
 }

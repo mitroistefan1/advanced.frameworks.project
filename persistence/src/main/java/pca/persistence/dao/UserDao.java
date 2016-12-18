@@ -5,4 +5,5 @@ import pca.persistence.model.User;
 
 public interface UserDao {
     public boolean isValid(User user);
+    public User getUser(String userName);
 }
