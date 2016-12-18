@@ -7,8 +7,8 @@ import pca.persistence.dto.UserDto;
 import pca.persistence.model.User;
 
 public class AuthenticationService {
-    private UserDao userDao = new UserDaoImpl();
-    private Converter converter = new Converter();
+    private UserDao userDao;
+    private Converter converter;
 
     public boolean isUserValid(UserDto userDto) {
         return userDao.isValid(converter.getUser(userDto));

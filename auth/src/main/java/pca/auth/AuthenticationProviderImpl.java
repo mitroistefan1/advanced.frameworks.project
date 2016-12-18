@@ -16,7 +16,8 @@ import java.util.List;
 
 public class AuthenticationProviderImpl implements AuthenticationProvider{
 
-    private AuthenticationService authenticationService = new AuthenticationService();
+    @Autowired
+    private AuthenticationService authenticationService;
 
 
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {

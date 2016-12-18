@@ -40,6 +40,7 @@
 <!--</security:authentication-manager>-->
 
 <!-- A custom service where Spring will retrieve users and their corresponding access levels  -->
+    <import resource="classpath:META-INF/authBeanConfiguration.xml"/>
 <bean id="UserDetailsServiceImpl" class="pca.auth.UserDetailsServiceImpl"/>
 <bean id="AuthenticationProviderImpl" class="pca.auth.AuthenticationProviderImpl"/>
 
