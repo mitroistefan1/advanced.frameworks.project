@@ -10,7 +10,9 @@ public class Converter {
         User returnUser  = new User();
 
         returnUser.setUserName(userDto.getUserName());
+        returnUser.setEmail(userDto.getEmail());
         returnUser.setPassword(userDto.getPassword());
+
         return returnUser;
     }
 
@@ -18,6 +20,7 @@ public class Converter {
         UserDto returnUserDto = new UserDto();
 
         returnUserDto.setUserName(user.getUserName());
+        returnUserDto.setEmail(user.getEmail());
         returnUserDto.setPassword(user.getPassword());
         return returnUserDto;
     }

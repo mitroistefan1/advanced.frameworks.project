@@ -8,11 +8,10 @@
 </head>
 <body>
 
-<h1>
-
-    Welcome!</h1><p>
-
-    HomePage!</p></body>
+<h1>Welcome!</h1>
+<p>HomePage!</p>
+All the users can see this!!!.
+</body>
 <a href="logUser">LogUser</a>
 
 </html>

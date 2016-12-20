@@ -8,11 +8,7 @@
 </head>
 <body>
 
-<h1>
-
-    Welcome!</h1><p>
-
-    HomePage!</p></body>
+<h2>Only logged users can see this!!!</h2>
 <a href="logUser">LogUser</a>
 
 </html>

@@ -6,11 +6,8 @@
 http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-     <bean id="authenticationService" class="pca.service.authentication.AuthenticationService">
-          <property name="userDao" ref="userDao"/>
-          <property name="converter" ref="converter"/>
-      </bean>
-      <bean id="userDao" class="pca.persistence.dao.UserDaoImpl"/>
-      <bean id="converter" class="pca.service.authentication.Converter"/>
+    <bean id="UserDetailsServiceImpl" class="pca.auth.UserDetailsServiceImpl"/>
+    <bean id="AuthenticationProviderImpl" class="pca.auth.AuthenticationProviderImpl"/>
+
 
 </beans>

@@ -16,8 +16,8 @@ import java.util.List;
 
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    //@Autowired
-    private AuthenticationService authenticationService = new AuthenticationService();
+    @Autowired
+    private AuthenticationService authenticationService;
 
 
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {

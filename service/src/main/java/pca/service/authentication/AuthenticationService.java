@@ -2,9 +2,7 @@ package pca.service.authentication;
 
 
 import pca.persistence.dao.UserDao;
-import pca.persistence.dao.UserDaoImpl;
 import pca.persistence.dto.UserDto;
-import pca.persistence.model.User;
 
 public class AuthenticationService {
     private UserDao userDao;
@@ -19,6 +17,9 @@ public class AuthenticationService {
     }
 
 
+    public void creatUser(UserDto userDto){
+        userDao.crateUser(converter.getUser(userDto));
+    }
     public void setUserDao(UserDao userDao) {
 
         this.userDao = userDao;
