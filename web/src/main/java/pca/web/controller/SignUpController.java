@@ -13,15 +13,15 @@ import pca.service.authentication.AuthenticationService;
 import pca.service.authentication.Converter;
 
 @Controller
-public class SingUpController {
+public class SignUpController {
 
     @Autowired
     private AuthenticationService authenticationService;
 
-    @RequestMapping("/singup")
+    @RequestMapping("/signup")
     public ModelAndView showform() {
 
-        return new ModelAndView("singup", "command", new UserDto());
+        return new ModelAndView("signup", "command", new UserDto());
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)

@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <bean id="rememberMeAuthenticationProvider"
+          class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+        <constructor-arg type="java.lang.String" value="KEy"/>
+    </bean>
+
+    <bean id="myTokenRepository" class="pca.auth.PersistentTokenRepositoryImpl">
+        <property name="authenticationService" ref="authenticationService"/>
+    </bean>
+
 
 
     <bean id="UserDetailsServiceImpl" class="pca.auth.UserDetailsServiceImpl"/>
-    <bean id="AuthenticationProviderImpl" class="pca.auth.AuthenticationProviderImpl"/>
 
+    <bean id="rememberMeServices"
+          class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+        <constructor-arg type="java.lang.String" value="KEy"/>
+        <constructor-arg ref="UserDetailsServiceImpl"/>
+        <constructor-arg ref="myTokenRepository"/>
+        <property name="cookieName" value="remember-me"/>
+        <property name="tokenLength" value="32"/>
+        <property name="parameter" value="remember-me-parameter"/>
+    </bean>
+
+    <bean id="rememberMeFilter"
+          class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+        <constructor-arg ref="authenticationManager"/>
+        <constructor-arg ref="rememberMeServices"/>
+    </bean>
+
+    <bean id="usernamePasswordAuthenticationFilter"
+          class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+        <property name="rememberMeServices" ref="rememberMeServices"/>
+        <property name="authenticationManager" ref="authenticationManager"/>
+    </bean>
 
 </beans>

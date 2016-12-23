@@ -28,8 +28,13 @@
             <artifactId>spring-security-config</artifactId>
             <version>${spring.security.version}</version>
         </dependency>
-    </dependencies>
+       <dependency>
+           <groupId>javax.servlet</groupId>
+           <artifactId>servlet-api</artifactId>
+           <version>3.0-alpha-1</version>
+       </dependency>
+   </dependencies>
     <properties>
-      <spring.security.version>3.2.4.RELEASE</spring.security.version>
+      <spring.security.version>3.2.9.RELEASE</spring.security.version>
          </properties>
 </project>

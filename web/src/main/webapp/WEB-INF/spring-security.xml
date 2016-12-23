@@ -7,41 +7,53 @@
    http://www.springframework.org/schema/security
    http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-<!-- This is where we configure Spring-Security  -->
-<security:http auto-config="true" use-expressions="true" access-denied-page="/error" >
 
-    <security:intercept-url pattern="/login" access="permitAll"/>
-    <security:intercept-url pattern="/index.jsp" access="permitAll"/>
-    <security:intercept-url pattern="/publichome" access="permitAll"/>
-    <security:intercept-url pattern="/save" access="permitAll"/>
-    <security:intercept-url pattern="/singup" access="permitAll"/>
-    <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
-
-    <security:form-login
-            login-page="/login"
-            authentication-failure-url="/login?error=true"
-            default-target-url="/loguser"/>
-
-    <security:logout
-            invalidate-session="true"
-            logout-success-url="/"/>
-    <!--logout-url="/logout"/>-->
-    <security:remember-me key="key"/>
-
-</security:http>
-
-<!-- Declare an authentication-manager to use a custom userDetailsService -->
-<security:authentication-manager>
-
-    <security:authentication-provider ref="AuthenticationProviderImpl"/>
-
-</security:authentication-manager>
-<!--<security:authentication-manager>-->
-<!--<security:authentication-provider user-service-ref="UserDetailsServiceImpl">-->
-<!--</security:authentication-provider>-->
-<!--</security:authentication-manager>-->
-
-<!-- A custom service where Spring will retrieve users and their corresponding access levels  -->
     <import resource="classpath:META-INF/authBeanConfiguration.xml"/>
+
+    <security:http auto-config="true" use-expressions="true" access-denied-page="/error">
+
+        <security:intercept-url pattern="/login" access="permitAll"/>
+        <security:intercept-url pattern="/index.jsp" access="permitAll"/>
+        <security:intercept-url pattern="/publichome" access="permitAll"/>
+        <security:intercept-url pattern="/save" access="permitAll"/>
+        <security:intercept-url pattern="/signup" access="permitAll"/>
+        <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
+
+        <security:form-login
+                login-page="/login"
+                authentication-failure-url="/login?error=true"
+                default-target-url="/loguser"/>
+
+        <security:logout invalidate-session="true" logout-success-url="/"/>
+
+        <!--<security:remember-me services-ref="rememberMeServices"/>-->
+
+        <!--<security:remember-me
+                key="rem-me-key"
+                services-ref="rememberMeServices"
+                remember-me-parameter="remember-me-param"
+                remember-me-cookie="my-remember-me"
+                token-validity-seconds="86400"/>-->
+
+        <security:remember-me
+                token-validity-seconds="86400"
+                remember-me-parameter="remember-me"
+                data-source-ref="dataSource" />
+    </security:http>
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider user-service-ref="UserDetailsServiceImpl">
+        </security:authentication-provider>
+        <security:authentication-provider ref='rememberMeAuthenticationProvider'/>
+    </security:authentication-manager>
+
+    <!--<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+        <security:filter-chain-map path-type="ant">
+            <security:filter-chain pattern="/**" filters="
+           usernamePasswordAuthenticationFilter,
+           rememberMeFilter"/>
+        </security:filter-chain-map>
+    </bean>-->
+
 
 </beans>

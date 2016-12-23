@@ -73,7 +73,7 @@
     </build>
     <properties>
         <spring.version>4.0.2.RELEASE</spring.version>
-        <spring.security.version>3.2.4.RELEASE</spring.security.version>
+        <spring.security.version>3.2.9.RELEASE</spring.security.version>
     </properties>
 </project>
         <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
