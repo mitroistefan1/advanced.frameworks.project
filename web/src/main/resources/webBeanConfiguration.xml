@@ -8,8 +8,9 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
     <import resource="classpath:persistenceBeanConfiguration.xml"/>
 
     <bean id="authenticationService" class="pca.service.authentication.AuthenticationService">
-        <property name="userDao" ref="userDao"/>
         <property name="converter" ref="converter"/>
     </bean>
+
+<bean id="converter" class="pca.service.authentication.Converter"></bean>
 
 </beans>

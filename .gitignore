@@ -1,0 +1,6 @@
+auth/target
+.idea/
+web/target
+service/target
+persistence/target
+*.iml

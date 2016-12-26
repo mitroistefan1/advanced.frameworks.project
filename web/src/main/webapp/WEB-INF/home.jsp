@@ -9,6 +9,6 @@
 <body>
 
 <h2>Only logged users can see this!!!</h2>
-<a href="logUser">LogUser</a>
-
+<a href="loguser">LogUser</a>
+</body>
 </html>

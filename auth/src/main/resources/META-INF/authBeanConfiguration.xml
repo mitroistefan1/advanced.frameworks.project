@@ -13,8 +13,6 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
         <property name="authenticationService" ref="authenticationService"/>
     </bean>
 
-
-
     <bean id="UserDetailsServiceImpl" class="pca.auth.UserDetailsServiceImpl"/>
 
     <bean id="rememberMeServices"

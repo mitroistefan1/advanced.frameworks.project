@@ -26,14 +26,6 @@
 
         <security:logout invalidate-session="true" logout-success-url="/"/>
 
-        <!--<security:remember-me services-ref="rememberMeServices"/>-->
-
-        <!--<security:remember-me
-                key="rem-me-key"
-                services-ref="rememberMeServices"
-                remember-me-parameter="remember-me-param"
-                remember-me-cookie="my-remember-me"
-                token-validity-seconds="86400"/>-->
 
         <security:remember-me
                 token-validity-seconds="86400"
@@ -47,13 +39,13 @@
         <security:authentication-provider ref='rememberMeAuthenticationProvider'/>
     </security:authentication-manager>
 
-    <!--<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+    <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
         <security:filter-chain-map path-type="ant">
             <security:filter-chain pattern="/**" filters="
            usernamePasswordAuthenticationFilter,
            rememberMeFilter"/>
         </security:filter-chain-map>
-    </bean>-->
+    </bean>
 
 
 </beans>

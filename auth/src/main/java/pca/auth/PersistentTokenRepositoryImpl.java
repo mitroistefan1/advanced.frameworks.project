@@ -25,16 +25,15 @@ public class PersistentTokenRepositoryImpl implements PersistentTokenRepository 
     }
 
     public void updateToken(String serise, String tokenValue, Date lastUsed) {
-        PersistentUserDto persistentUserDto = authenticationService.getPersistentUserBySerises(serise);
+        PersistentUserDto persistentUserDto = authenticationService.getPersistentUserBySeries(serise);
         authenticationService.updatePersistentUser(persistentUserDto);
     }
 
     public PersistentRememberMeToken getTokenForSeries(String seriesId) {
-        PersistentUserDto persistentUserDto = authenticationService.getPersistentUserBySerises(seriesId);
-        PersistentRememberMeToken token = new PersistentRememberMeToken(persistentUserDto.getUserName(),
+        PersistentUserDto persistentUserDto = authenticationService.getPersistentUserBySeries(seriesId);
+        return new PersistentRememberMeToken(persistentUserDto.getUserName(),
                 persistentUserDto.getSeries(), persistentUserDto.getToken(), persistentUserDto.getDate());
 
-        return token;
     }
 
     public void removeUserTokens(String userName) {
@@ -44,10 +43,6 @@ public class PersistentTokenRepositoryImpl implements PersistentTokenRepository 
         }else{
             System.out.println("!rememberme");
         }
-    }
-
-    public AuthenticationService getAuthenticationService() {
-        return authenticationService;
     }
 
     public void setAuthenticationService(AuthenticationService authenticationService) {
