@@ -14,7 +14,7 @@ public class Converter {
         returnUser.setUserName(userDto.getUserName());
         returnUser.setEmail(userDto.getEmail());
         returnUser.setPassword(userDto.getPassword());
-
+        returnUser.setRole(userDto.getRole());
         return returnUser;
     }
 
@@ -24,6 +24,7 @@ public class Converter {
         returnUserDto.setUserName(user.getUserName());
         returnUserDto.setEmail(user.getEmail());
         returnUserDto.setPassword(user.getPassword());
+        returnUserDto.setRole(user.getRole());
         return returnUserDto;
     }
 

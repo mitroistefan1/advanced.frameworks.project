@@ -21,6 +21,9 @@ public class AuthenticationService {
         return converter.getUserDto(userDao.findByUserName(userName));
     }
 
+    public void creatUser(UserDto userDto){
+        userDao.save(converter.getUser(userDto));
+    }
     public void savePersistentUser(PersistentUserDto persistentUserDto) {
         persistentUserDao.save(converter.getPersistentUser(persistentUserDto));
     }

@@ -22,8 +22,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        UserDetails user = null;
-        UserDto userDto = null;
+        UserDetails user;
+        UserDto userDto;
         try {
             userDto = authenticationService.getUser(userName);
             user = new User(
@@ -33,7 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                     true,
                     true,
                     true,
-                    getAuthorities()
+                    getAuthorities(userDto)
             );
 
 
@@ -44,11 +44,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return user;
     }
 
-    public Collection<GrantedAuthority> getAuthorities() {
+    private Collection<GrantedAuthority> getAuthorities(UserDto userDto) {
 
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>(2);
-
-        authList.add(new SimpleGrantedAuthority("ROLE_USER"));
+        if(userDto.getRole()==0) {
+            authList.add(new SimpleGrantedAuthority("ROLE_USER"));
+        }else{
+            authList.add(new SimpleGrantedAuthority("ROLE_USER"));
+            authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
 
         return authList;
     }
