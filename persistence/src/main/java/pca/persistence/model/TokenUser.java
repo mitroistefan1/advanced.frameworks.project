@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class PersistentUser {
+public class TokenUser {
 
     @Id
     private String series;

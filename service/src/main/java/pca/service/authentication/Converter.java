@@ -1,9 +1,9 @@
 package pca.service.authentication;
 
 
-import pca.persistence.dto.PersistentUserDto;
+import pca.persistence.dto.TokenUserDto;
 import pca.persistence.dto.UserDto;
-import pca.persistence.model.PersistentUser;
+import pca.persistence.model.TokenUser;
 import pca.persistence.model.User;
 
 public class Converter {
@@ -28,23 +28,23 @@ public class Converter {
         return returnUserDto;
     }
 
-    public PersistentUser getPersistentUser(PersistentUserDto persistentUserDto) {
-        PersistentUser persistentUser = new PersistentUser();
+    public TokenUser getPersistentUser(TokenUserDto tokenUserDto) {
+        TokenUser tokenUser = new TokenUser();
 
-        persistentUser.setUserName(persistentUser.getUserName());
-        persistentUser.setSeries(persistentUser.getSeries());
-        persistentUser.setToken(persistentUser.getToken());
-        persistentUser.setDate(persistentUser.getDate());
-        return persistentUser;
+        tokenUser.setUserName(tokenUser.getUserName());
+        tokenUser.setSeries(tokenUser.getSeries());
+        tokenUser.setToken(tokenUser.getToken());
+        tokenUser.setDate(tokenUser.getDate());
+        return tokenUser;
     }
 
-    public PersistentUserDto getPersistentUserDto(PersistentUser persistentUser) {
-        PersistentUserDto returnUserDto = new PersistentUserDto();
+    public TokenUserDto getPersistentUserDto(TokenUser tokenUser) {
+        TokenUserDto returnUserDto = new TokenUserDto();
 
-        returnUserDto.setUserName(persistentUser.getUserName());
-        returnUserDto.setSeries(persistentUser.getSeries());
-        returnUserDto.setToken(persistentUser.getToken());
-        returnUserDto.setDate(persistentUser.getDate());
+        returnUserDto.setUserName(tokenUser.getUserName());
+        returnUserDto.setSeries(tokenUser.getSeries());
+        returnUserDto.setToken(tokenUser.getToken());
+        returnUserDto.setDate(tokenUser.getDate());
         return returnUserDto;
     }
 }

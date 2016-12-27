@@ -3,7 +3,7 @@ package pca.persistence.dto;
 
 import java.util.Date;
 
-public class PersistentUserDto {
+public class TokenUserDto {
 
     private String series;
     private String userName;

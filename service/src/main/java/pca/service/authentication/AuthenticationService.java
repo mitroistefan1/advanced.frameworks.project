@@ -3,9 +3,9 @@ package pca.service.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pca.persistence.dao.PersistentUserDao;
+import pca.persistence.dao.TokenUserDao;
 import pca.persistence.dao.UserDao;
-import pca.persistence.dto.PersistentUserDto;
+import pca.persistence.dto.TokenUserDto;
 import pca.persistence.dto.UserDto;
 
 @Service
@@ -13,7 +13,7 @@ public class AuthenticationService {
     @Autowired
     private UserDao userDao;
     @Autowired
-    private PersistentUserDao persistentUserDao;
+    private TokenUserDao tokenUserDao;
 
     private Converter converter;
 
@@ -24,24 +24,24 @@ public class AuthenticationService {
     public void creatUser(UserDto userDto){
         userDao.save(converter.getUser(userDto));
     }
-    public void savePersistentUser(PersistentUserDto persistentUserDto) {
-        persistentUserDao.save(converter.getPersistentUser(persistentUserDto));
+    public void savePersistentUser(TokenUserDto tokenUserDto) {
+        tokenUserDao.save(converter.getPersistentUser(tokenUserDto));
     }
 
-    public PersistentUserDto getPersistentUserBySeries(String series) {
-        return converter.getPersistentUserDto(persistentUserDao.findBySeries(series));
+    public TokenUserDto getPersistentUserBySeries(String series) {
+        return converter.getPersistentUserDto(tokenUserDao.findBySeries(series));
     }
 
-    public void updatePersistentUser(PersistentUserDto persistentUserDto) {
-        persistentUserDao.save(converter.getPersistentUser(persistentUserDto));
+    public void updatePersistentUser(TokenUserDto tokenUserDto) {
+        tokenUserDao.save(converter.getPersistentUser(tokenUserDto));
     }
 
-    public PersistentUserDto getPersistentUserByUserName(String userName) {
-        return converter.getPersistentUserDto(persistentUserDao.findByUserName(userName));
+    public TokenUserDto getPersistentUserByUserName(String userName) {
+        return converter.getPersistentUserDto(tokenUserDao.findByUserName(userName));
     }
 
-    public void deletPersistentUser(PersistentUserDto persistentUserDto) {
-        persistentUserDao.delete(converter.getPersistentUser(persistentUserDto));
+    public void deletPersistentUser(TokenUserDto tokenUserDto) {
+        tokenUserDao.delete(converter.getPersistentUser(tokenUserDto));
     }
 
     public void setConverter(Converter converter) {
