@@ -1,7 +1,0 @@
-*.iml
-out/*
-.idea/*
-auth/target/*
-web/target/*
-service/target/*
-persistence/target/*

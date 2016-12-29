@@ -47,9 +47,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private Collection<GrantedAuthority> getAuthorities(UserDto userDto) {
 
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>(2);
-        if(userDto.getRole()==0) {
+        if (userDto.getRole() == 0) {
             authList.add(new SimpleGrantedAuthority("ROLE_USER"));
-        }else{
+        } else {
             authList.add(new SimpleGrantedAuthority("ROLE_USER"));
             authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }

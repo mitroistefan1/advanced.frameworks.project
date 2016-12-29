@@ -1,13 +1,10 @@
-package pca.persistence.model;
+package pca.persistence.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
 import java.util.Date;
 
-@Entity
-public class TokenUser {
+public class UserTokenDto {
 
-    @Id
     private String series;
     private String userName;
     private String token;

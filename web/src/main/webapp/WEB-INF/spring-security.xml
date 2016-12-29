@@ -13,7 +13,8 @@
     <security:http auto-config="true" use-expressions="true" access-denied-page="/error">
 
         <security:intercept-url pattern="/login" access="permitAll"/>
-        <security:intercept-url pattern="/index.jsp" access="permitAll"/>
+        <security:intercept-url pattern="/" access="permitAll"/>
+        <security:intercept-url pattern="/WEB-INF/jsp/index.jsp" access="permitAll"/>
         <security:intercept-url pattern="/publichome" access="permitAll"/>
         <security:intercept-url pattern="/save" access="permitAll"/>
         <security:intercept-url pattern="/signup" access="permitAll"/>
@@ -23,7 +24,7 @@
         <security:form-login
                 login-page="/login"
                 authentication-failure-url="/login?error=true"
-                default-target-url="/loguser"/>
+                default-target-url="/"/>
 
         <security:logout invalidate-session="true" logout-success-url="/"/>
 

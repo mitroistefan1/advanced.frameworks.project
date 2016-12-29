@@ -10,7 +10,10 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
     <bean id="authenticationService" class="pca.service.authentication.AuthenticationService">
         <property name="converter" ref="converter"/>
     </bean>
+    <bean id="problemService" class="pca.service.authentication.ProblemService">
+        <property name="converter" ref="converter"/>
+    </bean>
 
-<bean id="converter" class="pca.service.authentication.Converter"></bean>
+    <bean id="converter" class="pca.service.authentication.Converter"></bean>
 
 </beans>

@@ -22,10 +22,4 @@ public class LoginController {
         return "login";
     }
 
-
-    @RequestMapping(value = "/error", method = RequestMethod.GET)
-    public String getDeniedPage() {
-        return "error";
-    }
-
 }

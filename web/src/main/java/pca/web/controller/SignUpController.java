@@ -19,7 +19,7 @@ public class SignUpController {
     private AuthenticationService authenticationService;
 
     @RequestMapping("/signup")
-    public ModelAndView showform() {
+    public ModelAndView showSignUpForm() {
 
         return new ModelAndView("signup", "command", new UserDto());
     }
@@ -27,7 +27,7 @@ public class SignUpController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@ModelAttribute("user") UserDto user) {
         authenticationService.creatUser(user);
-        return "publichome";
+        return "redirect:/";
 
     }
 

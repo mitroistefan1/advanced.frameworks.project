@@ -1,10 +1,12 @@
 package pca.service.authentication;
 
 
-import pca.persistence.dto.TokenUserDto;
+import pca.persistence.dto.ProblemDto;
+import pca.persistence.dto.UserTokenDto;
 import pca.persistence.dto.UserDto;
-import pca.persistence.model.TokenUser;
+import pca.persistence.model.Problem;
 import pca.persistence.model.User;
+import pca.persistence.model.UserToken;
 
 public class Converter {
 
@@ -28,23 +30,36 @@ public class Converter {
         return returnUserDto;
     }
 
-    public TokenUser getPersistentUser(TokenUserDto tokenUserDto) {
-        TokenUser tokenUser = new TokenUser();
+    public UserToken getUserToken(UserTokenDto userTokenDto) {
+        UserToken userToken = new UserToken();
 
-        tokenUser.setUserName(tokenUser.getUserName());
-        tokenUser.setSeries(tokenUser.getSeries());
-        tokenUser.setToken(tokenUser.getToken());
-        tokenUser.setDate(tokenUser.getDate());
-        return tokenUser;
+        userToken.setUserName(userToken.getUserName());
+        userToken.setSeries(userToken.getSeries());
+        userToken.setToken(userToken.getToken());
+        userToken.setDate(userToken.getDate());
+        return userToken;
     }
 
-    public TokenUserDto getPersistentUserDto(TokenUser tokenUser) {
-        TokenUserDto returnUserDto = new TokenUserDto();
+    public UserTokenDto getUserTokenDto(UserToken userToken) {
+        UserTokenDto returnUserDto = new UserTokenDto();
 
-        returnUserDto.setUserName(tokenUser.getUserName());
-        returnUserDto.setSeries(tokenUser.getSeries());
-        returnUserDto.setToken(tokenUser.getToken());
-        returnUserDto.setDate(tokenUser.getDate());
+        returnUserDto.setUserName(userToken.getUserName());
+        returnUserDto.setSeries(userToken.getSeries());
+        returnUserDto.setToken(userToken.getToken());
+        returnUserDto.setDate(userToken.getDate());
         return returnUserDto;
+    }
+
+    public Problem getProblem(ProblemDto problemDto){
+        Problem problem = new Problem();
+        problem.setProblemName(problemDto.getProblemName());
+        problem.setProblemStatement(problemDto.getProblemStatement());
+        return problem;
+    }
+    public ProblemDto getProblemDto(Problem problem){
+        ProblemDto problemDto = new ProblemDto();
+        problemDto.setProblemName(problem.getProblemName());
+        problemDto.setProblemStatement(problem.getProblemStatement());
+        return problemDto;
     }
 }

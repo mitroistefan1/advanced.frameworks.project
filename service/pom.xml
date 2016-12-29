@@ -18,8 +18,4 @@
         </dependency>
 
     </dependencies>
-
-    <properties>
-        <spring.version>4.0.2.RELEASE</spring.version>
-    </properties>
 </project>
