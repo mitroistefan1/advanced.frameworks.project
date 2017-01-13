@@ -7,20 +7,31 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pca.persistence.dto.CommentDto;
 import pca.persistence.dto.ProblemDto;
-import pca.service.authentication.ProblemService;
+import pca.service.comments.CommentService;
+import pca.service.problems.ProblemService;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class ProblemController {
 
     @Autowired
     ProblemService problemService;
+    @Autowired
+    CommentService commentService;
+
 
     @ModelAttribute("problem")
     public ProblemDto consturct() {
         return new ProblemDto();
+    }
+
+    @ModelAttribute("comment")
+    public CommentDto consturctComment() {
+        return new CommentDto();
     }
 
     @RequestMapping(value = "/problems", method = RequestMethod.GET)
@@ -31,8 +42,23 @@ public class ProblemController {
 
     @RequestMapping(value = "/problems/{problemName}", method = RequestMethod.GET)
     public String showProblem(Model model, @PathVariable String problemName) {
-        model.addAttribute("problem", problemService.findProblem(problemName));
+        ProblemDto problemDto = problemService.findProblem(problemName);
+        model.addAttribute("problem", problemDto);
+        List<CommentDto> list = commentService.findAllComments(problemDto);
+        for (CommentDto c:list) {
+            System.out.println(c.getId()+" "+c.getAuthor()+" "+c.getProblem().getProblemName()+" "+c.getBody());
+        }
+        model.addAttribute("comments", commentService.findAllComments(problemDto));
         return "problem-details";
+    }
+
+
+    @RequestMapping(value = "/problems/{problemName}", method = RequestMethod.POST)
+    public String addComment(@PathVariable String problemName, @ModelAttribute("comment") CommentDto commentDto, Principal principal) {
+        ProblemDto problemDto = problemService.findProblem(problemName);
+
+        commentService.addComment(commentDto, problemName,principal.getName());
+        return "redirect:/problems/{problemName}";
     }
 
     @RequestMapping(value = "/problems/remove/{problemName}", method = RequestMethod.GET)

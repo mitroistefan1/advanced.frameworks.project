@@ -1,9 +1,11 @@
-package pca.service.authentication;
+package pca.service;
 
 
+import pca.persistence.dto.CommentDto;
 import pca.persistence.dto.ProblemDto;
 import pca.persistence.dto.UserTokenDto;
 import pca.persistence.dto.UserDto;
+import pca.persistence.model.Comment;
 import pca.persistence.model.Problem;
 import pca.persistence.model.User;
 import pca.persistence.model.UserToken;
@@ -62,4 +64,23 @@ public class Converter {
         problemDto.setProblemStatement(problem.getProblemStatement());
         return problemDto;
     }
+
+    public Comment getComment(CommentDto commentDto){
+        Comment comment = new Comment();
+        comment.setId(commentDto.getId());
+        comment.setBody(commentDto.getBody());
+        comment.setProblem(commentDto.getProblem());
+        comment.setAuthor(commentDto.getAuthor());
+        return comment;
+    }
+    public CommentDto getCommentDto(Comment comment){
+        CommentDto commentDto = new CommentDto();
+        commentDto.setId(comment.getId());
+        commentDto.setBody(comment.getBody());
+        commentDto.setProblem(comment.getProblem());
+        commentDto.setAuthor(comment.getAuthor());
+        return commentDto;
+
+    }
+
 }

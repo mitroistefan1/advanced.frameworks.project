@@ -14,44 +14,6 @@
     <a href="<spring:url value="/problems/addproblem/${problem.problemName}" />"
        class="btn btn-primary">Add problem</a>
 
-<%--<form:form commandName="problem" cssClass="form-horizontal">
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">problemName:</label>
-                        <div class="col-sm-10">
-                            <form:input path="problemName" cssClass="form-control"/>
-                            <form:errors path="problemName"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-
-                        <label class="col-sm-2 control-label">problemStatement:</label>
-                        <div class="col-sm-10">
-
-                            <form:input path="problemStatement" cssClass="form-control"/>
-
-                            <form:errors path="problemStatement"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary" value="Save"/>
-                </div>
-            </div>
-        </div>
-    </div>
-</form:form>--%>
-
 <table class="table table-bordered table-hover">
     <thead>
     <tr>

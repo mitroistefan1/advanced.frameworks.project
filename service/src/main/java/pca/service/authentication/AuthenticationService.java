@@ -7,6 +7,7 @@ import pca.persistence.dao.UserTokenDao;
 import pca.persistence.dao.UserDao;
 import pca.persistence.dto.UserTokenDto;
 import pca.persistence.dto.UserDto;
+import pca.service.Converter;
 
 @Service
 public class AuthenticationService {

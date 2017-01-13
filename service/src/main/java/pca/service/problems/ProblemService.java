@@ -1,11 +1,14 @@
-package pca.service.authentication;
+package pca.service.problems;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pca.persistence.dao.CommentDao;
 import pca.persistence.dao.ProblemDao;
 import pca.persistence.dto.ProblemDto;
+import pca.persistence.model.Comment;
 import pca.persistence.model.Problem;
+import pca.service.Converter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,8 @@ public class ProblemService {
 
     @Autowired
     private ProblemDao problemDao;
+    @Autowired
+    private CommentDao commentDao;
     @Autowired
     private Converter converter;
 
@@ -37,6 +42,10 @@ public class ProblemService {
     }
 
     public void removeProblem(String problemName) {
+        List<Comment> commentList = commentDao.findByProblem(problemDao.findOne(problemName));
+        for (Comment c: commentList) {
+            commentDao.delete(c);
+        }
         problemDao.delete(problemName);
     }
 

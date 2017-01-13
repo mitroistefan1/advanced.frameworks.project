@@ -6,11 +6,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import pca.persistence.dao.UserDao;
 import pca.persistence.dto.UserDto;
-import pca.persistence.model.User;
 import pca.service.authentication.AuthenticationService;
-import pca.service.authentication.Converter;
 
 @Controller
 public class SignUpController {
