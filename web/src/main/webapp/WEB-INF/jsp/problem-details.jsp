@@ -49,7 +49,7 @@
 <%--<table class="table table-bordered table-hover">
     <thead>
     <tr>
-        <h4>comments:</h4>
+        <h4>comment:</h4>
     </tr>
     </thead>
 
@@ -58,7 +58,7 @@
 
     <tbody>
 
-   <c:forEach items="${comments}" var="comment">
+   <c:forEach items="${comment}" var="comment">
         <tr>
             <td>
 

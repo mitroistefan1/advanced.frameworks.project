@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pca.persistence.dto.CommentDto;
-import pca.persistence.dto.ProblemDto;
-import pca.service.comments.CommentService;
-import pca.service.problems.ProblemService;
+import pca.service.data.CommentData;
+import pca.service.data.ProblemData;
+import pca.service.comment.CommentService;
+import pca.service.problem.ProblemService;
 
 import java.security.Principal;
 import java.util.List;
@@ -25,13 +25,13 @@ public class ProblemController {
 
 
     @ModelAttribute("problem")
-    public ProblemDto consturct() {
-        return new ProblemDto();
+    public ProblemData consturct() {
+        return new ProblemData();
     }
 
     @ModelAttribute("comment")
-    public CommentDto consturctComment() {
-        return new CommentDto();
+    public CommentData consturctComment() {
+        return new CommentData();
     }
 
     @RequestMapping(value = "/problems", method = RequestMethod.GET)
@@ -42,22 +42,22 @@ public class ProblemController {
 
     @RequestMapping(value = "/problems/{problemName}", method = RequestMethod.GET)
     public String showProblem(Model model, @PathVariable String problemName) {
-        ProblemDto problemDto = problemService.findProblem(problemName);
-        model.addAttribute("problem", problemDto);
-        List<CommentDto> list = commentService.findAllComments(problemDto);
-        for (CommentDto c:list) {
+        ProblemData problemData = problemService.findProblem(problemName);
+        model.addAttribute("problem", problemData);
+        List<CommentData> list = commentService.findAllComments(problemData);
+        for (CommentData c:list) {
             System.out.println(c.getId()+" "+c.getAuthor()+" "+c.getProblem().getProblemName()+" "+c.getBody());
         }
-        model.addAttribute("comments", commentService.findAllComments(problemDto));
+        model.addAttribute("comments", commentService.findAllComments(problemData));
         return "problem-details";
     }
 
 
     @RequestMapping(value = "/problems/{problemName}", method = RequestMethod.POST)
-    public String addComment(@PathVariable String problemName, @ModelAttribute("comment") CommentDto commentDto, Principal principal) {
-        ProblemDto problemDto = problemService.findProblem(problemName);
+    public String addComment(@PathVariable String problemName, @ModelAttribute("comment") CommentData commentData, Principal principal) {
+        ProblemData problemData = problemService.findProblem(problemName);
 
-        commentService.addComment(commentDto, problemName,principal.getName());
+        commentService.addComment(commentData, problemName,principal.getName());
         return "redirect:/problems/{problemName}";
     }
 
@@ -73,7 +73,7 @@ public class ProblemController {
     }
 
     @RequestMapping(value = "/problems/addproblem", method = RequestMethod.POST)
-    public String addProblem(@ModelAttribute("problem") ProblemDto problem, Principal principal) {
+    public String addProblem(@ModelAttribute("problem") ProblemData problem, Principal principal) {
         String name = principal.getName();
         System.out.println(name);
         problemService.addProblem(problem);
@@ -82,14 +82,14 @@ public class ProblemController {
 
     @RequestMapping(value = "/problems/edit/{problemName}", method = RequestMethod.GET)
     public String showEditProblem(Model model, @PathVariable String problemName) {
-        ProblemDto oldProblem = problemService.findProblem(problemName);
+        ProblemData oldProblem = problemService.findProblem(problemName);
         model.addAttribute("problem", oldProblem);
-        problemService.removeProblem(oldProblem.getProblemName());
+        problemService.updateProblem(oldProblem);
         return "editproblem";
     }
 
     @RequestMapping(value = "/problems/edit/{problemName}", method = RequestMethod.POST)
-    public String editProblem(@ModelAttribute("problem") ProblemDto problem) {
+    public String editProblem(@ModelAttribute("problem") ProblemData problem) {
         problemService.addProblem(problem);
         return "redirect:/problems";
     }

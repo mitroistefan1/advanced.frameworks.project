@@ -6,8 +6,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import pca.persistence.dto.UserDto;
-import pca.service.authentication.AuthenticationService;
+import pca.service.data.UserData;
+import pca.service.authentication.AuthenticationServiceImpl;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.ArrayList;
@@ -17,23 +17,23 @@ import java.util.List;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private AuthenticationService authenticationService;
+    private AuthenticationServiceImpl authenticationService;
 
 
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
         UserDetails user;
-        UserDto userDto;
+        UserData userData;
         try {
-            userDto = authenticationService.getUser(userName);
+            userData = authenticationService.getUser(userName);
             user = new User(
-                    userDto.getUserName(),
-                    userDto.getPassword(),
+                    userData.getUserName(),
+                    userData.getPassword(),
                     true,
                     true,
                     true,
                     true,
-                    getAuthorities(userDto)
+                    getAuthorities(userData)
             );
 
 
@@ -44,10 +44,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return user;
     }
 
-    private Collection<GrantedAuthority> getAuthorities(UserDto userDto) {
+    private Collection<GrantedAuthority> getAuthorities(UserData userData) {
 
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>(2);
-        if (userDto.getRole() == 0) {
+        if (userData.getRole() == 0) {
             authList.add(new SimpleGrantedAuthority("ROLE_USER"));
         } else {
             authList.add(new SimpleGrantedAuthority("ROLE_USER"));

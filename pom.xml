@@ -15,6 +15,7 @@
         <module>auth</module>
         <module>service</module>
         <module>persistence</module>
+        <module>converter</module>
     </modules>
 
     <properties>

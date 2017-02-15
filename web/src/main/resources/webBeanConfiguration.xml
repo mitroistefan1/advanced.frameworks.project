@@ -7,17 +7,22 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
     <import resource="classpath:persistenceBeanConfiguration.xml"/>
 
-    <bean id="authenticationService" class="pca.service.authentication.AuthenticationService">
-        <property name="converter" ref="converter"/>
+    <bean id="authenticationService" class="pca.service.authentication.AuthenticationServiceImpl">
+        <property name="userConverter" ref="userConverter"/>
+        <property name="userTokenConverter" ref="userTokenConverter"/>
     </bean>
-    <bean id="commentService" class="pca.service.comments.CommentService">
-        <property name="converter" ref="converter"/>
-    </bean>
-
-    <bean id="problemService" class="pca.service.problems.ProblemService">
-        <property name="converter" ref="converter"/>
+    <bean id="commentService" class="pca.service.comment.CommentServiceImpl">
+        <property name="commentConverter" ref="commentConverter"/>
+        <property name="problemConverter" ref="probblemConverter"/>
     </bean>
 
-    <bean id="converter" class="pca.service.Converter"></bean>
+    <bean id="problemService" class="pca.service.problem.ProblemServiceImpl">
+        <property name="problemConverter" ref="probblemConverter"/>
+    </bean>
+
+    <bean id="userConverter" class="pca.converter.UserConverter"></bean>
+    <bean id="commentConverter" class="pca.converter.CommentConverter"></bean>
+    <bean id="probblemConverter" class="pca.converter.ProblemConverter"></bean>
+    <bean id="userTokenConverter" class="pca.converter.UserTokenConverter"></bean>
 
 </beans>

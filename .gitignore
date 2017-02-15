@@ -4,3 +4,8 @@ web/target
 service/target
 persistence/target
 *.iml
+converter/target/
+persistence/model/target/
+persistence/repository/target/
+service/data/target/
+service/web-service/target/
