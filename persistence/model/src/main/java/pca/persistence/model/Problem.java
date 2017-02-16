@@ -1,9 +1,6 @@
 package pca.persistence.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -12,7 +9,13 @@ public class Problem {
     @Id
     private String problemName;
     private String problemStatement;
-    @OneToMany
+    //@OneToMany(cascade = CascadeType.ALL,mappedBy = "problem")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "problem_comment",
+            joinColumns = @JoinColumn(name = "Problem_problemName"),
+            inverseJoinColumns = @JoinColumn(name = "commentList_id")
+    )
     private List<Comment> commentList;
 
     public String getProblemName() {
