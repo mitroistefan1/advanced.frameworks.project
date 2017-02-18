@@ -12,12 +12,38 @@
     <artifactId>auth</artifactId>
    <dependencies>
 
-       <dependency>
+     <!--  <dependency>
            <groupId>ms.advanced.frameworks</groupId>
            <artifactId>web-service</artifactId>
            <version>1.0-SNAPSHOT</version>
+       </dependency>-->
+       <dependency>
+           <groupId>ms.advanced.frameworks</groupId>
+           <artifactId>data</artifactId>
+           <version>1.0-SNAPSHOT</version>
+       </dependency>
+       <dependency>
+           <groupId>ms.advanced.frameworks</groupId>
+           <artifactId>repository</artifactId>
+           <version>1.0-SNAPSHOT</version>
+       </dependency>
+       <dependency>
+           <groupId>ms.advanced.frameworks</groupId>
+           <artifactId>converter</artifactId>
+           <version>1.0-SNAPSHOT</version>
        </dependency>
 
+       <dependency>
+           <groupId>javax.mail</groupId>
+           <artifactId>mail</artifactId>
+           <version>1.4.3</version>
+       </dependency>
+
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-context-support</artifactId>
+           <version>4.3.4.RELEASE</version>
+       </dependency>
        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>

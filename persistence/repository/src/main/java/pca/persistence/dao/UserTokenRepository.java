@@ -7,11 +7,9 @@ import pca.persistence.model.UserToken;
 
 @Repository
 public interface UserTokenRepository extends CrudRepository<UserToken, String> {
-    public UserToken save(UserToken userToken);
 
-    public UserToken findBySeries(String series);
+  UserToken findBySeries(String series);
 
-    public UserToken findByUserName(String userName);
+  UserToken findByUserName(String userName);
 
-    public void delete(UserToken userToken);
 }

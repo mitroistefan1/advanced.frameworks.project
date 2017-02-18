@@ -7,13 +7,5 @@ import pca.persistence.model.Problem;
 import java.util.List;
 
 public interface ProblemRepository extends CrudRepository<Problem, String> {
-    List<Problem> findAll();
-
-    Problem findOne(String problemName);
-
-    Problem save(Problem problem);
-
-    void delete(String problemName);
-
 
 }

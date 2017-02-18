@@ -3,22 +3,22 @@ package pca.service.data;
 
 public class ProblemData {
 
-    private String problemName;
-    private String problemStatement;
+  private String problemName;
+  private String problemStatement;
 
-    public String getProblemName() {
-        return problemName;
-    }
+  public String getProblemName() {
+    return problemName;
+  }
 
-    public void setProblemName(String problemName) {
-        this.problemName = problemName;
-    }
+  public void setProblemName(String problemName) {
+    this.problemName = problemName;
+  }
 
-    public String getProblemStatement() {
-        return problemStatement;
-    }
+  public String getProblemStatement() {
+    return problemStatement;
+  }
 
-    public void setProblemStatement(String problemStatement) {
-        this.problemStatement = problemStatement;
-    }
+  public void setProblemStatement(String problemStatement) {
+    this.problemStatement = problemStatement;
+  }
 }

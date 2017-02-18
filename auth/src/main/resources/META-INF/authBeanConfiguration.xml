@@ -4,16 +4,45 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
+
+    <bean id="authenticationService" class="pca.auth.authentication.AuthenticationServiceImpl">
+        <property name="userConverter" ref="userConverter"/>
+        <property name="userTokenConverter" ref="userTokenConverter"/>
+        <property name="emailSender" ref="emailSender"/>
+        <property name="tokenGenerator" ref="tokenGenerator"/>
+
+    </bean>
+    <bean id="emailSender" class="pca.auth.authentication.email_sender.EmailSenderImpl">
+        <property name="mailSender" ref="mailSender"/>
+
+    </bean>
+
+    <bean id="tokenGenerator" class="pca.auth.authentication.token_generator.TokenGeneratorImpl"/>
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value="mstefantestmail@gmail.com"/>
+        <property name="password" value="123password"/>
+
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+    </bean>
+
     <bean id="rememberMeAuthenticationProvider"
           class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
         <constructor-arg type="java.lang.String" value="KEy"/>
     </bean>
 
-    <bean id="myTokenRepository" class="pca.auth.PersistentTokenRepositoryImpl">
+
+    <bean id="myTokenRepository" class="pca.auth.security.PersistentTokenRepositoryImpl">
         <property name="authenticationService" ref="authenticationService"/>
     </bean>
 
-    <bean id="UserDetailsServiceImpl" class="pca.auth.UserDetailsServiceImpl"/>
+    <bean id="UserDetailsServiceImpl" class="pca.auth.security.UserDetailsServiceImpl"/>
 
     <bean id="rememberMeServices"
           class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">

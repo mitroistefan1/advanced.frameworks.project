@@ -12,10 +12,8 @@
     <modules>
         <module>web-service</module>
         <module>data</module>
+        <module>converter</module>
     </modules>
     <artifactId>service</artifactId>
-    <dependencies>
 
-
-    </dependencies>
 </project>

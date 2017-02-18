@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface CommentService {
 
-    public List<CommentData> findAllComments(ProblemData problemData);
-    public void addComment(CommentData commentData, String problemName, String author);
-    public void deleteComment(int commentId);
+  List<CommentData> findAllComments(ProblemData problemData);
+
+  void addComment(CommentData commentData, String problemName, String author);
+
+  void deleteComment(int commentId);
 }

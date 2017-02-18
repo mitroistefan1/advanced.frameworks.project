@@ -7,38 +7,33 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index() {
+  @RequestMapping(value = "/", method = RequestMethod.GET)
+  public String index() {
 
-        return "index";
+    return "index";
+  }
 
-    }
+  @RequestMapping(value = "/home", method = RequestMethod.GET)
+  public String home() {
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String home() {
+    return "home";
+  }
 
-        return "home";
+  @RequestMapping(value = "/loguser", method = RequestMethod.GET)
+  public String logUser() {
 
-    }
+    return "loguser";
+  }
 
-    @RequestMapping(value = "/loguser", method = RequestMethod.GET)
-    public String logUser() {
+  @RequestMapping(value = "/publichome", method = RequestMethod.GET)
+  public String publicHome() {
 
-        return "loguser";
+    return "publichome";
+  }
 
-    }
+  @RequestMapping(value = "/admin", method = RequestMethod.GET)
+  public String admin() {
 
-    @RequestMapping(value = "/publichome", method = RequestMethod.GET)
-    public String publicHome() {
-
-        return "publichome";
-
-    }
-
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String admin() {
-
-        return "admin";
-
-    }
+    return "admin";
+  }
 }

@@ -7,9 +7,9 @@ import pca.persistence.model.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, String> {
-    public boolean exists(String userName);
 
-    public User findByUserName(String userName);
+  User findByUserName(String userName);
 
-    public User save(User user);
+  User findByValidToken(String validToken);
+
 }

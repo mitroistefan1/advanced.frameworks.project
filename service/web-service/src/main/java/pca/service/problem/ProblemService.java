@@ -7,10 +7,13 @@ import java.util.List;
 public interface ProblemService {
 
 
-    public List<ProblemData> findAllProblems();
-    public ProblemData findProblem(String problemName);
-    public void addProblem(ProblemData problemData);
-    public void removeProblem(String problemName);
-    public void updateProblem(ProblemData problemData);
+  List<ProblemData> findAllProblems();
 
+  ProblemData findProblem(String problemName);
+
+  void addProblem(ProblemData problemData);
+
+  void removeProblem(String problemName);
+
+  void updateProblem(ProblemData problemData);
 }

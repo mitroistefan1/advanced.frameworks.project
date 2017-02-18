@@ -7,10 +7,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
     <import resource="classpath:persistenceBeanConfiguration.xml"/>
 
-    <bean id="authenticationService" class="pca.service.authentication.AuthenticationServiceImpl">
-        <property name="userConverter" ref="userConverter"/>
-        <property name="userTokenConverter" ref="userTokenConverter"/>
-    </bean>
+
     <bean id="commentService" class="pca.service.comment.CommentServiceImpl">
         <property name="commentConverter" ref="commentConverter"/>
         <property name="problemConverter" ref="probblemConverter"/>
@@ -24,5 +21,6 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
     <bean id="commentConverter" class="pca.converter.CommentConverter"></bean>
     <bean id="probblemConverter" class="pca.converter.ProblemConverter"></bean>
     <bean id="userTokenConverter" class="pca.converter.UserTokenConverter"></bean>
+
 
 </beans>
