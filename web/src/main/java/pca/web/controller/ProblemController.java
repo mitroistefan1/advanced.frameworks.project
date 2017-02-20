@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pca.service.data.CommentData;
 import pca.service.data.ProblemData;
 import pca.service.comment.CommentService;
+import pca.service.data.SolutionData;
 import pca.service.problem.ProblemService;
+import pca.service.solution.SolutionService;
 
 import java.security.Principal;
 import java.util.List;
@@ -22,6 +24,8 @@ public class ProblemController {
   ProblemService problemService;
   @Autowired
   CommentService commentService;
+  @Autowired
+  SolutionService solutionService;
 
 
   @ModelAttribute("problem")
@@ -34,6 +38,12 @@ public class ProblemController {
     return new CommentData();
   }
 
+  @ModelAttribute("solution")
+  public SolutionData consturctSolution() {
+    return new SolutionData();
+  }
+
+
   @RequestMapping(value = "/problems", method = RequestMethod.GET)
   public String showProblems(Model model) {
     model.addAttribute("problems", problemService.findAllProblems());
@@ -45,19 +55,24 @@ public class ProblemController {
     ProblemData problemData = problemService.findProblem(problemName);
     model.addAttribute("problem", problemData);
     List<CommentData> list = commentService.findAllComments(problemData);
-    for (CommentData c : list) {
-      System.out.println(c.getId() + " " + c.getAuthor() + " " + c.getProblem().getProblemName() + " " + c.getBody());
-    }
-    model.addAttribute("comments", commentService.findAllComments(problemData));
+
+    model.addAttribute("comments", list);
     return "problem-details";
   }
 
 
   @RequestMapping(value = "/problems/{problemName}", method = RequestMethod.POST)
-  public String addComment(@PathVariable String problemName, @ModelAttribute("comment") CommentData commentData, Principal principal) {
-    ProblemData problemData = problemService.findProblem(problemName);
+  public String addSolutionAndComment(@PathVariable String problemName, @ModelAttribute("comment") CommentData commentData,
+                                      @ModelAttribute("solution") SolutionData solutionData, Principal principal) {
 
-    commentService.addComment(commentData, problemName, principal.getName());
+    if (commentData.getBody() != null) {
+      commentService.addComment(commentData, problemName, principal.getName());
+    }
+
+
+    if (solutionData.getText() != null) {
+      solutionService.addSolution(solutionData, problemName, principal.getName());
+    }
     return "redirect:/problems/{problemName}";
   }
 
@@ -75,7 +90,6 @@ public class ProblemController {
   @RequestMapping(value = "/problems/addproblem", method = RequestMethod.POST)
   public String addProblem(@ModelAttribute("problem") ProblemData problem, Principal principal) {
     String name = principal.getName();
-    System.out.println(name);
     problemService.addProblem(problem);
     return "redirect:/problems";
   }
@@ -86,6 +100,13 @@ public class ProblemController {
     model.addAttribute("problem", oldProblem);
 
     return "editproblem";
+  }
+
+  @RequestMapping(value = "/problems/solutions/{problemName}", method = RequestMethod.GET)
+  public String showProblemSolution(Model model, @PathVariable String problemName) {
+
+    model.addAttribute("solutions", solutionService.findAllSolutions(problemService.findProblem(problemName)));
+    return "problem-solutions";
   }
 
   @RequestMapping(value = "/problems/edit/{problemName}", method = RequestMethod.POST)

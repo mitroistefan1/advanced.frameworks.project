@@ -1,9 +1,12 @@
 package pca.persistence.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -16,6 +19,8 @@ public class User {
   private boolean isValid = false;
   private String validToken;
   private int role;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+  private List<Solution> solutionList;
 
   public String getUserName() {
     return userName;
@@ -65,4 +70,11 @@ public class User {
     this.validToken = validToken;
   }
 
+  public List<Solution> getSolutionList() {
+    return solutionList;
+  }
+
+  public void setSolutionList(List<Solution> solutionList) {
+    this.solutionList = solutionList;
+  }
 }

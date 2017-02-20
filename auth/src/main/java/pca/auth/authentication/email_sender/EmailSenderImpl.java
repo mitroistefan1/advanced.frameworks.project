@@ -12,8 +12,8 @@ public class EmailSenderImpl implements EmailSender {
     SimpleMailMessage message = new SimpleMailMessage();
 
     message.setTo(userEmail);
-    message.setSubject("PCA account validation");
-    message.setText("For validation go to :http://localhost:8080/signup/validation/" + token);
+    message.setSubject("PCA account evaluation");
+    message.setText("For evaluation go to :http://localhost:8080/signup/evaluation/" + token);
     mailSender.send(message);
   }
 

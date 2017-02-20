@@ -19,25 +19,24 @@ public class CommentServiceImpl implements CommentService {
   private CommentRepository commentRepository;
   @Autowired
   private ProblemRepository problemRepository;
-  @Autowired
+
   private CommentConverter commentConverter;
   private ProblemConverter problemConverter;
 
   public List<CommentData> findAllComments(ProblemData problemData) {
 
     List<Comment> list = commentRepository.findByProblem(problemConverter.convertToModel(problemData));
-    List<CommentData> listDto = new ArrayList<CommentData>();
+    List<CommentData> listData = new ArrayList<CommentData>();
     for (Comment c : list) {
-      listDto.add(commentConverter.convertToData(c));
+      listData.add(commentConverter.convertToData(c));
     }
-    return listDto;
+    return listData;
   }
 
   public void addComment(CommentData commentData, String problemName, String author) {
 
     commentData.setProblem(problemRepository.findOne(problemName));
     commentData.setAuthor(author);
-    System.out.println("comment service add coment id=" + commentData.getId());
     commentRepository.save(commentConverter.convertToModel(commentData));
   }
 

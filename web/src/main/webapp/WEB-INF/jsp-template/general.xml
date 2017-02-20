@@ -43,6 +43,15 @@
         <put-attribute name="body" value="/WEB-INF/jsp/editproblem.jsp"/>
         <put-attribute name="current" value="problems"/>
     </definition>
+    <definition name="problem-solutions" extends="common">
+        <put-attribute name="title" value="Solutions"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/problem-solutions.jsp"/>
+        <put-attribute name="current" value="problems"/>
+    </definition>
 
-
+    <definition name="solution-details" extends="common">
+        <put-attribute name="title" value="Solution details"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/solution-details.jsp"/>
+        <put-attribute name="current" value="problems"/>
+    </definition>
 </tiles-definitions>

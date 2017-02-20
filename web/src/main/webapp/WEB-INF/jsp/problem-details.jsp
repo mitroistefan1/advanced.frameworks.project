@@ -14,8 +14,9 @@
 
     <li><a href="<spring:url value="/problems/remove/${problem.problemName}" />"
            class="btn btn-danger triggerRemove">remove problem</a></li>
+    <li><a href="<spring:url value="/problems/solutions/${problem.problemName}" />"
+           class="btn ">show solutions</a></li>
 </ul>
-
 <br>
 <br>
 
@@ -27,6 +28,18 @@
         ${problem.problemStatement}
     </div>
 </div>
+
+<br>
+<br>
+<form:form commandName="solution">
+
+    <div class="form-group">
+        <label>Solution</label>
+        <form:textarea path="text" rows="5" cols="30"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send Solution</button>
+</form:form>
 
 
 <br>

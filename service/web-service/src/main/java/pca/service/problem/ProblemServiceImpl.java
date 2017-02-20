@@ -19,7 +19,7 @@ public class ProblemServiceImpl implements ProblemService {
   private ProblemRepository problemRepository;
   @Autowired
   private CommentRepository commentRepository;
-  @Autowired
+
   private ProblemConverter problemConverter;
 
   public List<ProblemData> findAllProblems() {

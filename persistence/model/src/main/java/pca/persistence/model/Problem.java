@@ -11,6 +11,8 @@ public class Problem {
   private String problemStatement;
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "problem")
   private List<Comment> commentList;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "problem")
+  private List<Solution> solutionList;
 
   public String getProblemName() {
     return problemName;
@@ -34,5 +36,13 @@ public class Problem {
 
   public void setCommentList(List<Comment> commentList) {
     this.commentList = commentList;
+  }
+
+  public List<Solution> getSolutionList() {
+    return solutionList;
+  }
+
+  public void setSolutionList(List<Solution> solutionList) {
+    this.solutionList = solutionList;
   }
 }
