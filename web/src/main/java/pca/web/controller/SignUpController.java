@@ -22,8 +22,7 @@ public class SignUpController {
     return new ModelAndView("signup", "command", new UserData());
   }
 
-
-  @RequestMapping(value = "signup/evaluation/{userToken}", method = RequestMethod.GET)
+  @RequestMapping(value =  "signup/validation/{userToken}", method = RequestMethod.GET)
   public String validate(@PathVariable String userToken) {
 
     UserData user = authenticationService.getUserByToken(userToken);
