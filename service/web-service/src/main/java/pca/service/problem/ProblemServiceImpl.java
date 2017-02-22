@@ -4,8 +4,8 @@ package pca.service.problem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pca.converter.ProblemConverter;
-import pca.persistence.dao.CommentRepository;
-import pca.persistence.dao.ProblemRepository;
+import pca.persistence.repository.CommentRepository;
+import pca.persistence.repository.ProblemRepository;
 import pca.service.data.ProblemData;
 import pca.persistence.model.Problem;
 

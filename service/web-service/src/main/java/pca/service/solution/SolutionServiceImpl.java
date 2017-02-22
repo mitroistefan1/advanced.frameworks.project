@@ -4,9 +4,9 @@ package pca.service.solution;
 import org.springframework.beans.factory.annotation.Autowired;
 import pca.converter.ProblemConverter;
 import pca.converter.SolutionConverter;
-import pca.persistence.dao.ProblemRepository;
-import pca.persistence.dao.SolutionRepository;
-import pca.persistence.dao.UserRepository;
+import pca.persistence.repository.ProblemRepository;
+import pca.persistence.repository.SolutionRepository;
+import pca.persistence.repository.UserRepository;
 import pca.persistence.model.Solution;
 import pca.service.data.ProblemData;
 import pca.service.data.SolutionData;
@@ -48,7 +48,7 @@ public class SolutionServiceImpl implements SolutionService {
   public void addSolution(SolutionData solutionData, String problemName, String userName){
 
     solutionData.setProblem(problemRepository.findOne(problemName));
-    solutionData.setUser(userRepository.findByUserName(userName));
+    solutionData.setUser(userRepository.findOne(userName));
     solutionData.setScore(solutionEvaluator.evaluate(solutionData.getText()));
     solutionRepository.save(solutionConverter.convertToModel(solutionData));
   }

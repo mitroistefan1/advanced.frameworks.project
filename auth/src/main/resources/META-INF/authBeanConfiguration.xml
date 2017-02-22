@@ -41,14 +41,18 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
     <bean id="myTokenRepository" class="pca.auth.security.PersistentTokenRepositoryImpl">
         <property name="authenticationService" ref="authenticationService"/>
     </bean>
+    <bean id="repo" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+        <property name="dataSource" ref="dataSource"/>
 
-    <bean id="UserDetailsServiceImpl" class="pca.auth.security.UserDetailsServiceImpl"/>
+    </bean>
+
+    <bean id="userDetailsServiceImpl" class="pca.auth.security.UserDetailsServiceImpl"/>
 
     <bean id="rememberMeServices"
           class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
         <constructor-arg type="java.lang.String" value="KEy"/>
-        <constructor-arg ref="UserDetailsServiceImpl"/>
-        <constructor-arg ref="myTokenRepository"/>
+        <constructor-arg ref="userDetailsServiceImpl"/>
+        <constructor-arg ref="repo"/>
         <property name="cookieName" value="remember-me"/>
         <property name="tokenLength" value="32"/>
         <property name="parameter" value="remember-me-parameter"/>

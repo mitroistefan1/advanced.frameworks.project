@@ -1,4 +1,4 @@
-package pca.persistence.dao;
+package pca.persistence.repository;
 
 
 import org.springframework.data.repository.CrudRepository;
