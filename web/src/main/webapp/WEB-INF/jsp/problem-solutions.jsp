@@ -5,9 +5,9 @@
 <table class="table table-bordered table-hover">
     <thead>
     <tr>
-        <th>user</th>
-        <th>problem</th>
-        <th>score</th>
+        <th><spring:message code="label.user"/></th>
+        <th><spring:message code="label.problem"/></th>
+        <th><spring:message code="label.score"/></th>
         <th></th>
     </tr>
     </thead>
@@ -30,7 +30,7 @@
             </td>
             <td>
             <p><a href="<spring:url value="/solution/${solution.id}" />"
-                  class="btn ">view solution</a></p>
+                  class="btn "><spring:message code="label.viewSolution"/></a></p>
             </td>
         </tr>
     </c:forEach>

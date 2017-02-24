@@ -12,12 +12,12 @@
 
 </button>
     <a href="<spring:url value="/problems/addproblem/${problem.problemName}" />"
-       class="btn btn-primary">Add problem</a>
+       class="btn btn-primary"><spring:message code="label.addProblem"/></a>
 
 <table class="table table-bordered table-hover">
     <thead>
     <tr>
-        <th>problem name</th>
+        <th><spring:message code="label.problemName"/></th>
     </tr>
     </thead>
     <tbody>

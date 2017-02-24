@@ -10,12 +10,12 @@
 <ul class="nav nav-pills pull-right">
     <li>
     <li><a href="<spring:url value="/problems/edit/${problem.problemName}" />"
-           class="btn">edit problem</a></li>
+           class="btn"><spring:message code="label.editProblem"/></a></li>
 
     <li><a href="<spring:url value="/problems/remove/${problem.problemName}" />"
-           class="btn btn-danger triggerRemove">remove problem</a></li>
+           class="btn btn-danger triggerRemove"><spring:message code="label.removeProblem"/></a></li>
     <li><a href="<spring:url value="/problems/solutions/${problem.problemName}" />"
-           class="btn ">show solutions</a></li>
+           class="btn "><spring:message code="label.showSolutions"/></a></li>
 </ul>
 <br>
 <br>
@@ -34,11 +34,11 @@
 <form:form commandName="solution">
 
     <div class="form-group">
-        <label>Solution</label>
+        <label><spring:message code="label.solution"/></label>
         <form:textarea path="text" rows="5" cols="30"/>
     </div>
 
-    <button type="submit" class="btn btn-primary">Send Solution</button>
+    <button type="submit" class="btn btn-primary"><spring:message code="label.sendSolution"/></button>
 </form:form>
 
 
@@ -47,14 +47,14 @@
 
 <div class="panel panel-default">
 
-    <div class="panel-heading">Comments:</div>
+    <div class="panel-heading"><spring:message code="label.comments"/>:</div>
 
 
     <ul class="list-group">
         <c:forEach items="${comments}" var="comment">
             <li class="list-group-item">${comment.body} <p align="right">${comment.author}</p>
                 <p><a href="<spring:url value="/problems/${problem.problemName}/remove_comment/${comment.id}" />"
-                      class="btn btn-danger triggerRemove">remove comment</a></p></li>
+                      class="btn btn-danger triggerRemove"><spring:message code="label.removeComment"/></a></p></li>
         </c:forEach>
     </ul>
 </div>
@@ -88,9 +88,9 @@
 <form:form commandName="comment">
 
     <div class="form-group">
-        <label>Comment</label>
+        <label><spring:message code="label.comment"/></label>
         <form:textarea path="body" rows="5" cols="30"/>
     </div>
 
-    <button type="submit" class="btn btn-primary">AddComment</button>
+    <button type="submit" class="btn btn-primary"><spring:message code="label.addComment"/></button>
 </form:form>
