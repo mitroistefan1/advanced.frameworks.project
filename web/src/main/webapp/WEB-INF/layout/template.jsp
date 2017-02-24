@@ -33,11 +33,11 @@
         <nav>
             <ul class="nav nav-pills pull-right">
                 <security:authorize access="! isAuthenticated()">
-                    <li><a href='<spring:url value="/login" />'>LogIn</a></li>
-                    <li><a href='<spring:url value="/signup" />'>SignUp</a></li>
+                    <li><a href='<spring:url value="/login" />'><spring:message code="label.login"/></a></li>
+                    <li><a href='<spring:url value="/signup" />'><spring:message code="label.signup"/></a></li>
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
-                    <li><a href="<c:url value="/j_spring_security_logout" />">LogOut</a></li>
+                    <li><a href="<c:url value="/j_spring_security_logout" />"><spring:message code="label.logout"/></a></li>
                 </security:authorize>
             </ul>
         </nav>
@@ -56,9 +56,10 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="${current=="index"?"active":""} "><a href='<spring:url value="/" />'>Home</a></li>
+                    <li class="${current=="index"?"active":""} "><a href='<spring:url value="/" />'>
+                        <spring:message code="label.home"/></a></li>
                     <li class="${current=="problem"?"active":""} "><a
-                            href="<spring:url value="/problems" />">Problems</a></li>
+                            href="<spring:url value="/problems" />"><spring:message code="label.problems"/></a></li>
                     <li><a href="#">Meetings</a></li>
                 </ul>
             </div><!--/.nav-collapse -->

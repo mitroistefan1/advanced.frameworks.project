@@ -13,7 +13,7 @@ public class EmailSenderImpl implements EmailSender {
 
     message.setTo(userEmail);
     message.setSubject("PCA account validation");
-    message.setText("For validation go to :http://localhost:8080/signup/evaluation/" + token);
+    message.setText("For validation go to :http://localhost:8080/signup/validation/" + token);
     mailSender.send(message);
   }
 

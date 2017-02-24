@@ -1,6 +1,4 @@
-<h2>Welcome to PCA!!!</h2>
-<a href="login">LogIn</a>
-<p>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-</p>
-<a href="signup">SignUp</a>
+<h2><spring:message code="label.welcome"/>PCA!!!</h2>
+

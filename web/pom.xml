@@ -11,6 +11,14 @@
     <name>web Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.0.2.RELEASE</version>
+        </dependency>
+
+
         <dependency>
             <groupId>ms.advanced.frameworks</groupId>
             <artifactId>repository</artifactId>
