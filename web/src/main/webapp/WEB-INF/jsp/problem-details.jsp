@@ -8,7 +8,8 @@
         crossorigin="anonymous"></script>
 
 <ul class="nav nav-pills pull-right">
-    <li>
+    <li><a href="<spring:url value="/problems/addtest/${problem.problemName}" />"
+           class="btn">add test</a></li>
     <li><a href="<spring:url value="/problems/edit/${problem.problemName}" />"
            class="btn"><spring:message code="label.editProblem"/></a></li>
 
@@ -59,31 +60,6 @@
     </ul>
 </div>
 
-<%--<table class="table table-bordered table-hover">
-    <thead>
-    <tr>
-        <h4>comment:</h4>
-    </tr>
-    </thead>
-
-    <br>
-    <br>
-
-    <tbody>
-
-   <c:forEach items="${comment}" var="comment">
-        <tr>
-            <td>
-
-                    ${comment.body}
-
-            </td>
-        </tr>
-    </c:forEach>
-
-    </tbody>
-
-</table>--%>
 
 <form:form commandName="comment">
 

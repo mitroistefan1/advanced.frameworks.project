@@ -11,4 +11,5 @@ public interface SolutionService {
   public SolutionData findSolution(int solutionId);
   public List<SolutionData> findAllSolutions(ProblemData problemData);
   public void addSolution(SolutionData solutionData, String problemName, String userName);
+
 }

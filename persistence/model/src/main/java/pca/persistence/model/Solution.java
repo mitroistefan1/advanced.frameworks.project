@@ -2,6 +2,7 @@ package pca.persistence.model;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Solution {
@@ -17,7 +18,7 @@ public class Solution {
   private Problem problem;
   private String text;
   private int score;
-
+  private String message;
 
   public int getId() {
     return id;
@@ -57,5 +58,13 @@ public class Solution {
 
   public void setScore(int score) {
     this.score = score;
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
   }
 }

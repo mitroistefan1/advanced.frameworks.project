@@ -16,4 +16,6 @@ public interface ProblemService {
   void removeProblem(String problemName);
 
   void updateProblem(ProblemData problemData);
+
+  //void creatInputAndOutputFileForProblem(String problemName);
 }

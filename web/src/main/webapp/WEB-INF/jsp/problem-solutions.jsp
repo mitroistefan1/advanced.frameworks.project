@@ -29,6 +29,9 @@
                     ${solution.score}
             </td>
             <td>
+                    ${solution.message}
+            </td>
+            <td>
             <p><a href="<spring:url value="/solution/${solution.id}" />"
                   class="btn "><spring:message code="label.viewSolution"/></a></p>
             </td>

@@ -43,6 +43,13 @@ public class ProblemController {
     return new SolutionData();
   }
 
+  /*@RequestMapping(value = "/problems/addtest/${problemName}", method = RequestMethod.GET)
+  public String showAddTest(){
+    System.out.println("test get");
+    return "addtest";
+  }*/
+
+
 
   @RequestMapping(value = "/problems", method = RequestMethod.GET)
   public String showProblems(Model model) {
@@ -72,6 +79,7 @@ public class ProblemController {
 
     if (solutionData.getText() != null) {
       solutionService.addSolution(solutionData, problemName, principal.getName());
+
     }
     return "redirect:/problems/{problemName}";
   }

@@ -4,10 +4,11 @@ package pca.service.problem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pca.converter.ProblemConverter;
-import pca.persistence.repository.CommentRepository;
+
 import pca.persistence.repository.ProblemRepository;
 import pca.service.data.ProblemData;
 import pca.persistence.model.Problem;
+import pca.service.solution.evaluation.SolutionEvaluator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +18,15 @@ public class ProblemServiceImpl implements ProblemService {
 
   @Autowired
   private ProblemRepository problemRepository;
-  @Autowired
-  private CommentRepository commentRepository;
 
   private ProblemConverter problemConverter;
+
+
 
   public List<ProblemData> findAllProblems() {
     Iterable<Problem> problemList = problemRepository.findAll();
 
-    List<ProblemData> problemDataList = new ArrayList<ProblemData>();
+    List<ProblemData> problemDataList = new ArrayList<>();
     for (Problem p : problemList) {
       problemDataList.add(problemConverter.convertToData(p));
     }

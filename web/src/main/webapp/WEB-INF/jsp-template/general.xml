@@ -54,4 +54,9 @@
         <put-attribute name="body" value="/WEB-INF/jsp/solution-details.jsp"/>
         <put-attribute name="current" value="problems"/>
     </definition>
+    <definition name="addtest" extends="common">
+        <put-attribute name="title" value="AddTest"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/addtest.jsp"/>
+        <put-attribute name="current" value="problems"/>
+    </definition>
 </tiles-definitions>

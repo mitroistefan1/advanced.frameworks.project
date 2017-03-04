@@ -22,7 +22,7 @@ public class SolutionServiceImpl implements SolutionService {
   @Autowired
   private ProblemRepository problemRepository;
   @Autowired
-  private  UserRepository userRepository;
+  private UserRepository userRepository;
 
   private SolutionConverter solutionConverter;
 
@@ -31,25 +31,27 @@ public class SolutionServiceImpl implements SolutionService {
   private SolutionEvaluator solutionEvaluator;
 
 
-  public SolutionData findSolution(int solutionId){
-    SolutionData solutionData = solutionConverter.convertToData(solutionRepository.findOne(solutionId));
+  public SolutionData findSolution(int solutionId) {
 
-    return solutionData;
+    return solutionConverter.convertToData(solutionRepository.findOne(solutionId));
   }
-  public List<SolutionData> findAllSolutions(ProblemData problemData){
+
+  public List<SolutionData> findAllSolutions(ProblemData problemData) {
     List<Solution> list = solutionRepository.findByProblem(problemConverter.convertToModel(problemData));
-    List<SolutionData> listData = new ArrayList<SolutionData>();
+    List<SolutionData> listData = new ArrayList<>();
     for (Solution s : list) {
       listData.add(solutionConverter.convertToData(s));
     }
     return listData;
 
   }
-  public void addSolution(SolutionData solutionData, String problemName, String userName){
+
+  public void addSolution(SolutionData solutionData, String problemName, String userName) {
 
     solutionData.setProblem(problemRepository.findOne(problemName));
     solutionData.setUser(userRepository.findOne(userName));
-    solutionData.setScore(solutionEvaluator.evaluate(solutionData.getText()));
+    solutionData.setScore(solutionEvaluator.evaluate(problemConverter.convertToData(problemRepository.findOne(problemName)),
+            solutionData));
     solutionRepository.save(solutionConverter.convertToModel(solutionData));
   }
 

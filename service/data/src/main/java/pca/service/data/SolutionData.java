@@ -4,6 +4,8 @@ package pca.service.data;
 import pca.persistence.model.Problem;
 import pca.persistence.model.User;
 
+import java.util.List;
+
 public class SolutionData {
 
   private int id;
@@ -11,6 +13,7 @@ public class SolutionData {
   private Problem problem;
   private String text;
   private int score;
+  private String message;
 
 
   public int getId() {
@@ -51,5 +54,13 @@ public class SolutionData {
 
   public void setScore(int score) {
     this.score = score;
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
   }
 }

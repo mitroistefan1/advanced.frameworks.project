@@ -15,6 +15,7 @@ public class SolutionConverter implements Converter<Solution,SolutionData> {
     solutionData.setUser(model.getUser());
     solutionData.setText(model.getText());
     solutionData.setScore(model.getScore());
+    solutionData.setMessage(model.getMessage());
 
     return solutionData;
   }
@@ -27,6 +28,7 @@ public class SolutionConverter implements Converter<Solution,SolutionData> {
     solution.setUser(data.getUser());
     solution.setText(data.getText());
     solution.setScore(data.getScore());
+    solution.setMessage(data.getMessage());
 
     return solution;
   }

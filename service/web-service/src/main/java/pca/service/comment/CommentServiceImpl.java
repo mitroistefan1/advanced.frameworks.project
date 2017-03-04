@@ -26,7 +26,7 @@ public class CommentServiceImpl implements CommentService {
   public List<CommentData> findAllComments(ProblemData problemData) {
 
     List<Comment> list = commentRepository.findByProblem(problemConverter.convertToModel(problemData));
-    List<CommentData> listData = new ArrayList<CommentData>();
+    List<CommentData> listData = new ArrayList<>();
     for (Comment c : list) {
       listData.add(commentConverter.convertToData(c));
     }
