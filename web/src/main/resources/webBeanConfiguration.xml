@@ -37,7 +37,6 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
     <bean id="userConverter" class="pca.converter.UserConverter"/>
     <bean id="commentConverter" class="pca.converter.CommentConverter"/>
     <bean id="probblemConverter" class="pca.converter.ProblemConverter"/>
-    <bean id="userTokenConverter" class="pca.converter.UserTokenConverter"/>
     <bean id="solutionConverter" class="pca.converter.SolutionConverter"/>
     <bean id="testConverter" class="pca.converter.TestConverter"/>
 </beans>

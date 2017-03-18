@@ -7,8 +7,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
     <bean id="authenticationService" class="pca.auth.authentication.AuthenticationServiceImpl">
         <property name="userConverter" ref="userConverter"/>
-        <property name="userTokenConverter" ref="userTokenConverter"/>
-        <property name="emailSender" ref="emailSender"/>
+         <property name="emailSender" ref="emailSender"/>
         <property name="tokenGenerator" ref="tokenGenerator"/>
 
     </bean>
@@ -38,10 +37,8 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
     </bean>
 
 
-    <bean id="myTokenRepository" class="pca.auth.security.PersistentTokenRepositoryImpl">
-        <property name="authenticationService" ref="authenticationService"/>
-    </bean>
-    <bean id="repo" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+
+    <bean id="tokenRepository" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
         <property name="dataSource" ref="dataSource"/>
 
     </bean>
@@ -52,7 +49,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
           class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
         <constructor-arg type="java.lang.String" value="KEy"/>
         <constructor-arg ref="userDetailsServiceImpl"/>
-        <constructor-arg ref="repo"/>
+        <constructor-arg ref="tokenRepository"/>
         <property name="cookieName" value="remember-me"/>
         <property name="tokenLength" value="32"/>
         <property name="parameter" value="remember-me-parameter"/>

@@ -5,11 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pca.auth.exception.AuthException;
 import pca.converter.UserConverter;
-import pca.converter.UserTokenConverter;
-import pca.persistence.repository.UserTokenRepository;
 import pca.persistence.repository.UserRepository;
 import pca.auth.authentication.token_generator.TokenGenerator;
-import pca.service.data.UserTokenData;
 import pca.service.data.UserData;
 import pca.auth.authentication.email_sender.EmailSender;
 
@@ -19,13 +16,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
   @Autowired
   private UserRepository userRepository;
-  @Autowired
-  private UserTokenRepository userTokenRepository;
 
   private EmailSender emailSender;
   private TokenGenerator tokenGenerator;
   private UserConverter userConverter;
-  private UserTokenConverter userTokenConverter;
 
 
   public UserData getUser(String userName) {
@@ -58,44 +52,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     userRepository.save(userConverter.convertToModel(userData));
   }
 
-  public void saveUserToken(UserTokenData userTokenData) {
-
-    System.out.println("save user token----------------------------------------------------------------");
-    userTokenRepository.save(userTokenConverter.convertToModel(userTokenData));
-  }
-
-  public UserTokenData getUserTokenBySeries(String series) {
-
-    System.out.println("get user token----------------------------------------------------------------");
-    return userTokenConverter.convertToData(userTokenRepository.findBySeries(series));
-  }
-
-  public void updateUserToken(UserTokenData userTokenData) {
-
-    System.out.println("update user token----------------------------------------------------------------");
-    userTokenRepository.save(userTokenConverter.convertToModel(userTokenData));
-  }
-
-  public UserTokenData getUserTokenByUserName(String userName) {
-
-    return userTokenConverter.convertToData(userTokenRepository.findByUserName(userName));
-  }
-
-  public void deleteUserToken(UserTokenData userTokenData) {
-
-    System.out.println("remove user token----------------------------------------------------------------");
-    userTokenRepository.delete(userTokenConverter.convertToModel(userTokenData));
-  }
-
   public void setUserConverter(UserConverter userConverter) {
 
     this.userConverter = userConverter;
   }
 
-  public void setUserTokenConverter(UserTokenConverter userTokenConverter) {
-
-    this.userTokenConverter = userTokenConverter;
-  }
 
   public void setEmailSender(EmailSender emailSender) {
 
