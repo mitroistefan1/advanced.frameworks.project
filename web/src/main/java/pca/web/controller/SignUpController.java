@@ -1,14 +1,15 @@
 package pca.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import pca.auth.exception.AuthException;
 import pca.service.data.UserData;
 import pca.auth.authentication.AuthenticationService;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class SignUpController {
@@ -31,11 +32,26 @@ public class SignUpController {
     return "redirect:/";
   }
 
+  @RequestMapping(value =  "signup/validation/please-verify", method = RequestMethod.GET)
+  public String pleaseVerify() {
+    return "validation";
+  }
+
   @RequestMapping(value = "/save", method = RequestMethod.POST)
-  public String save(@ModelAttribute("user") UserData user) {
+  public String save(@ModelAttribute("user") UserData user) throws AuthException {
 
     authenticationService.createUser(user);
-    return "redirect:/";
+    return "redirect:/signup/validation/please-verify";
+  }
+
+  @ExceptionHandler(AuthException.class)
+
+  public ModelAndView handleAuthException(HttpServletRequest request, Exception ex){
+
+    ModelAndView modelAndView = new ModelAndView();
+    modelAndView.addObject("exception", ex.getMessage());
+    modelAndView.setViewName("error");
+    return modelAndView;
   }
 
 }

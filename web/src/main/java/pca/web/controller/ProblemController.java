@@ -1,19 +1,22 @@
 package pca.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import pca.service.data.CommentData;
 import pca.service.data.ProblemData;
 import pca.service.comment.CommentService;
 import pca.service.data.SolutionData;
+import pca.service.exception.WebServiceException;
 import pca.service.problem.ProblemService;
 import pca.service.solution.SolutionService;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -43,11 +46,6 @@ public class ProblemController {
     return new SolutionData();
   }
 
-  /*@RequestMapping(value = "/problems/addtest/${problemName}", method = RequestMethod.GET)
-  public String showAddTest(){
-    System.out.println("test get");
-    return "addtest";
-  }*/
 
 
 
@@ -55,10 +53,11 @@ public class ProblemController {
   public String showProblems(Model model) {
     model.addAttribute("problems", problemService.findAllProblems());
     return "problems";
+
   }
 
   @RequestMapping(value = "/problems/{problemName}", method = RequestMethod.GET)
-  public String showProblem(Model model, @PathVariable String problemName) {
+  public String showProblem(Model model, @PathVariable String problemName) throws WebServiceException {
     ProblemData problemData = problemService.findProblem(problemName);
     model.addAttribute("problem", problemData);
     List<CommentData> list = commentService.findAllComments(problemData);
@@ -103,7 +102,7 @@ public class ProblemController {
   }
 
   @RequestMapping(value = "/problems/edit/{problemName}", method = RequestMethod.GET)
-  public String showEditProblem(Model model, @PathVariable String problemName) {
+  public String showEditProblem(Model model, @PathVariable String problemName) throws WebServiceException {
     ProblemData oldProblem = problemService.findProblem(problemName);
     model.addAttribute("problem", oldProblem);
 
@@ -111,7 +110,7 @@ public class ProblemController {
   }
 
   @RequestMapping(value = "/problems/solutions/{problemName}", method = RequestMethod.GET)
-  public String showProblemSolution(Model model, @PathVariable String problemName) {
+  public String showProblemSolution(Model model, @PathVariable String problemName) throws WebServiceException {
 
     model.addAttribute("solutions", solutionService.findAllSolutions(problemService.findProblem(problemName)));
     return "problem-solutions";
@@ -122,5 +121,17 @@ public class ProblemController {
 
     problemService.addProblem(problem);
     return "redirect:/problems";
+  }
+
+
+  @ExceptionHandler(WebServiceException.class)
+  @ResponseStatus(value= HttpStatus.NOT_FOUND)
+  public ModelAndView handleProblemNotFoundException(HttpServletRequest request, Exception ex){
+
+
+    ModelAndView modelAndView = new ModelAndView();
+    modelAndView.addObject("exception", ex.getMessage());
+    modelAndView.setViewName("error");
+    return modelAndView;
   }
 }

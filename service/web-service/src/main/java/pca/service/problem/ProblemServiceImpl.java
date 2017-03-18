@@ -8,6 +8,7 @@ import pca.converter.ProblemConverter;
 import pca.persistence.repository.ProblemRepository;
 import pca.service.data.ProblemData;
 import pca.persistence.model.Problem;
+import pca.service.exception.WebServiceException;
 import pca.service.solution.evaluation.SolutionEvaluator;
 
 import java.util.ArrayList;
@@ -33,9 +34,12 @@ public class ProblemServiceImpl implements ProblemService {
     return problemDataList;
   }
 
-  public ProblemData findProblem(String problemName) {
-
-    return problemConverter.convertToData(problemRepository.findOne(problemName));
+  public ProblemData findProblem(String problemName) throws WebServiceException {
+    Problem problem = problemRepository.findOne(problemName);
+    if(problem==null){
+      throw new WebServiceException("problem "+problemName+" not found");
+    }
+    return problemConverter.convertToData(problem);
   }
 
   public void addProblem(ProblemData problemData) {

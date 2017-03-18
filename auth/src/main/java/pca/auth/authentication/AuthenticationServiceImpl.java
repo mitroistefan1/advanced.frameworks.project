@@ -3,6 +3,7 @@ package pca.auth.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pca.auth.exception.AuthException;
 import pca.converter.UserConverter;
 import pca.converter.UserTokenConverter;
 import pca.persistence.repository.UserTokenRepository;
@@ -20,9 +21,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
   private UserRepository userRepository;
   @Autowired
   private UserTokenRepository userTokenRepository;
-  @Autowired
+
   private EmailSender emailSender;
-  @Autowired
   private TokenGenerator tokenGenerator;
   private UserConverter userConverter;
   private UserTokenConverter userTokenConverter;
@@ -39,9 +39,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
   }
 
 
-  public void createUser(UserData userData) {
+  public void createUser(UserData userData) throws AuthException {
 
     String token;
+
+    if (userRepository.findOne(userData.getUserName()) != null) {
+      throw new AuthException("username: " + userData.getUserName() + " already exist");
+    }
 
     token = tokenGenerator.generateToken(userData.getUserName());
     emailSender.sendEmail(userData.getEmail(), token);

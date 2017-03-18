@@ -10,6 +10,7 @@ import pca.persistence.repository.UserRepository;
 import pca.persistence.model.Solution;
 import pca.service.data.ProblemData;
 import pca.service.data.SolutionData;
+import pca.service.exception.WebServiceException;
 import pca.service.solution.evaluation.SolutionEvaluator;
 
 import java.util.ArrayList;
@@ -31,9 +32,12 @@ public class SolutionServiceImpl implements SolutionService {
   private SolutionEvaluator solutionEvaluator;
 
 
-  public SolutionData findSolution(int solutionId) {
-
-    return solutionConverter.convertToData(solutionRepository.findOne(solutionId));
+  public SolutionData findSolution(int solutionId) throws WebServiceException {
+    Solution solution = solutionRepository.findOne(solutionId);
+    if(solution==null){
+      throw new WebServiceException("solution with id: "+solutionId+"not found");
+    }
+    return solutionConverter.convertToData(solution);
   }
 
   public List<SolutionData> findAllSolutions(ProblemData problemData) {

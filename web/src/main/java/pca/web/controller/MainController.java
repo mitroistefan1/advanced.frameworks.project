@@ -13,11 +13,7 @@ public class MainController {
     return "index";
   }
 
-  @RequestMapping(value = "/home", method = RequestMethod.GET)
-  public String home() {
 
-    return "home";
-  }
 
   @RequestMapping(value = "/loguser", method = RequestMethod.GET)
   public String logUser() {

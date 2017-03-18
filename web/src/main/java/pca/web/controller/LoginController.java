@@ -15,7 +15,6 @@ public class LoginController {
   public String getLoginPage(@RequestParam(value = "error", required = false) boolean error,
                              ModelMap model) {
 
-    System.out.println("log in");
     if (error) {
       model.put("error", "You have entered an invalid username or password!");
     } else {
