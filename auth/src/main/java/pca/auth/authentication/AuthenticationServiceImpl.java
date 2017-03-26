@@ -16,7 +16,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
   @Autowired
   private UserRepository userRepository;
-
   private EmailSender emailSender;
   private TokenGenerator tokenGenerator;
   private UserConverter userConverter;

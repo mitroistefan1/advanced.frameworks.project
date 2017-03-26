@@ -10,10 +10,10 @@
 
 <!-- Button trigger modal -->
 
-</button>
+<security:authorize access="hasRole('ROLE_ADMIN')and hasRole('ROLE_USER')">
     <a href="<spring:url value="/problems/addproblem/${problem.problemName}" />"
        class="btn btn-primary"><spring:message code="label.addProblem"/></a>
-
+</security:authorize>
 <table class="table table-bordered table-hover">
     <thead>
     <tr>

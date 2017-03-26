@@ -7,22 +7,23 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
     <bean id="authenticationService" class="pca.auth.authentication.AuthenticationServiceImpl">
         <property name="userConverter" ref="userConverter"/>
-         <property name="emailSender" ref="emailSender"/>
+        <property name="emailSender" ref="emailSender"/>
         <property name="tokenGenerator" ref="tokenGenerator"/>
-
     </bean>
+
     <bean id="emailSender" class="pca.auth.authentication.email_sender.EmailSenderImpl">
         <property name="mailSender" ref="mailSender"/>
-
+        <property name="mailText" value="${mail.text}"/>
+        <property name="mailSubject" value="${mail.subject}"/>
     </bean>
 
     <bean id="tokenGenerator" class="pca.auth.authentication.token_generator.TokenGeneratorImpl"/>
-    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.gmail.com"/>
-        <property name="port" value="587"/>
-        <property name="username" value="mstefantestmail@gmail.com"/>
-        <property name="password" value="123password"/>
 
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${smtp.host}"/>
+        <property name="port" value="${smtp.port}"/>
+        <property name="username" value="${smtp.user}"/>
+        <property name="password" value="${smtp.password}"/>
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.smtp.auth">true</prop>
@@ -37,13 +38,14 @@ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
     </bean>
 
 
-
-    <bean id="tokenRepository" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+    <bean id="tokenRepository"
+          class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
         <property name="dataSource" ref="dataSource"/>
-
     </bean>
 
-    <bean id="userDetailsServiceImpl" class="pca.auth.security.UserDetailsServiceImpl"/>
+    <bean id="userDetailsServiceImpl" class="pca.auth.security.UserDetailsServiceImpl">
+        <property name="authenticationService" ref="authenticationService"/>
+    </bean>
 
     <bean id="rememberMeServices"
           class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">

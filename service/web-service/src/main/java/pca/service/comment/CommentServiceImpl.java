@@ -2,11 +2,9 @@ package pca.service.comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import pca.converter.CommentConverter;
-import pca.converter.ProblemConverter;
 import pca.persistence.repository.CommentRepository;
 import pca.persistence.repository.ProblemRepository;
 import pca.service.data.CommentData;
-import pca.service.data.ProblemData;
 import pca.persistence.model.Comment;
 
 
@@ -19,24 +17,22 @@ public class CommentServiceImpl implements CommentService {
   private CommentRepository commentRepository;
   @Autowired
   private ProblemRepository problemRepository;
-
   private CommentConverter commentConverter;
-  private ProblemConverter problemConverter;
 
-  public List<CommentData> findAllComments(ProblemData problemData) {
+  public List<CommentData> findAllComments(String problemName) {
 
-    List<Comment> list = commentRepository.findByProblem(problemConverter.convertToModel(problemData));
+    List<Comment> list = commentRepository.findByProblem(problemRepository.findOne(problemName));
     List<CommentData> listData = new ArrayList<>();
+
     for (Comment c : list) {
       listData.add(commentConverter.convertToData(c));
     }
+
     return listData;
   }
 
-  public void addComment(CommentData commentData, String problemName, String author) {
+  public void addComment(CommentData commentData) {
 
-    commentData.setProblem(problemRepository.findOne(problemName));
-    commentData.setAuthor(author);
     commentRepository.save(commentConverter.convertToModel(commentData));
   }
 
@@ -49,8 +45,4 @@ public class CommentServiceImpl implements CommentService {
     this.commentConverter = commentConverter;
   }
 
-
-  public void setProblemConverter(ProblemConverter problemConverter) {
-    this.problemConverter = problemConverter;
-  }
 }

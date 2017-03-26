@@ -1,3 +1,4 @@
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ include file="../layout/taglib.jsp" %>
@@ -8,15 +9,16 @@
         crossorigin="anonymous"></script>
 
 <ul class="nav nav-pills pull-right">
-    <li><a href="<spring:url value="/problems/addtest/${problem.problemName}" />"
-           class="btn">add test</a></li>
-    <li><a href="<spring:url value="/problems/edit/${problem.problemName}" />"
-           class="btn"><spring:message code="label.editProblem"/></a></li>
 
-    <li><a href="<spring:url value="/problems/remove/${problem.problemName}" />"
-           class="btn btn-danger triggerRemove"><spring:message code="label.removeProblem"/></a></li>
+
     <li><a href="<spring:url value="/problems/solutions/${problem.problemName}" />"
            class="btn "><spring:message code="label.showSolutions"/></a></li>
+<security:authorize access="hasRole('ROLE_ADMIN')and hasRole('ROLE_USER')">
+    <li><a href="<spring:url value="/problems/edit/${problem.problemName}" />"
+           class="btn"><spring:message code="label.editProblem"/></a></li>
+    <li><a href="<spring:url value="/problems/remove/${problem.problemName}" />"
+           class="btn btn-danger triggerRemove"><spring:message code="label.removeProblem"/></a></li>
+</security:authorize>
 </ul>
 <br>
 <br>
@@ -53,9 +55,12 @@
 
     <ul class="list-group">
         <c:forEach items="${comments}" var="comment">
-            <li class="list-group-item">${comment.body} <p align="right">${comment.author}</p>
+            <li class="list-group-item">${comment.body} <p align="right">${comment.userName}</p>
+                <security:authorize access="hasRole('ROLE_ADMIN')and hasRole('ROLE_USER')">
                 <p><a href="<spring:url value="/problems/${problem.problemName}/remove_comment/${comment.id}" />"
                       class="btn btn-danger triggerRemove"><spring:message code="label.removeComment"/></a></p></li>
+                </security:authorize>
+
         </c:forEach>
     </ul>
 </div>

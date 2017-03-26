@@ -15,6 +15,7 @@ public class UserConverter implements Converter<User, UserData> {
     returnUserData.setRole(model.getRole());
     returnUserData.setValid(model.isValid());
     returnUserData.setValidToken(model.getValidToken());
+
     return returnUserData;
   }
 
@@ -28,6 +29,7 @@ public class UserConverter implements Converter<User, UserData> {
     returnUser.setRole(data.getRole());
     returnUser.setValid(data.isValid());
     returnUser.setValidToken(data.getValidToken());
+
     return returnUser;
   }
 }

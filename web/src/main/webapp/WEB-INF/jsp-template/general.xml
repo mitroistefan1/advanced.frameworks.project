@@ -11,16 +11,19 @@
         <put-attribute name="body" value="/WEB-INF/jsp/index.jsp"/>
         <put-attribute name="current" value="index"/>
     </definition>
+
     <definition name="problems" extends="common">
         <put-attribute name="title" value="Problems"/>
         <put-attribute name="body" value="/WEB-INF/jsp/problems.jsp"/>
         <put-attribute name="current" value="problems"/>
     </definition>
+
     <definition name="problem-details" extends="common">
         <put-attribute name="title" value="Problem details"/>
         <put-attribute name="body" value="/WEB-INF/jsp/problem-details.jsp"/>
         <put-attribute name="current" value="problems"/>
     </definition>
+
     <definition name="login" extends="common">
         <put-attribute name="title" value="LogIn"/>
         <put-attribute name="body" value="/WEB-INF/jsp/login.jsp"/>
@@ -38,11 +41,13 @@
         <put-attribute name="body" value="/WEB-INF/jsp/addproblem.jsp"/>
         <put-attribute name="current" value="problems"/>
     </definition>
+
     <definition name="editproblem" extends="common">
         <put-attribute name="title" value="EditProblem"/>
         <put-attribute name="body" value="/WEB-INF/jsp/editproblem.jsp"/>
         <put-attribute name="current" value="problems"/>
     </definition>
+
     <definition name="problem-solutions" extends="common">
         <put-attribute name="title" value="Solutions"/>
         <put-attribute name="body" value="/WEB-INF/jsp/problem-solutions.jsp"/>
@@ -54,9 +59,13 @@
         <put-attribute name="body" value="/WEB-INF/jsp/solution-details.jsp"/>
         <put-attribute name="current" value="problems"/>
     </definition>
-    <definition name="addtest" extends="common">
+
+
+    <definition name="validate_problem" extends="common">
         <put-attribute name="title" value="AddTest"/>
-        <put-attribute name="body" value="/WEB-INF/jsp/addtest.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/validate_problem.jsp"/>
         <put-attribute name="current" value="problems"/>
     </definition>
+
+
 </tiles-definitions>

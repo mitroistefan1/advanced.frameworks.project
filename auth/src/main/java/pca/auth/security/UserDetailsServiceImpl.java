@@ -17,7 +17,6 @@ import java.util.List;
 
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-  @Autowired
   private AuthenticationServiceImpl authenticationService;
 
 
@@ -26,10 +25,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     UserDetails user;
     UserData userData;
 
-    System.out.println("load by userName---------------------------------");
     try {
       userData = authenticationService.getUser(userName);
-
       if (!userData.isValid()) {
         user = new User(
                 userData.getUserName(),
@@ -55,23 +52,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
       e.printStackTrace();
       throw new UsernameNotFoundException("Error in retrieving user");
     }
-
-
     return user;
-
   }
 
+  public void setAuthenticationService(AuthenticationServiceImpl authenticationService) {
+    this.authenticationService = authenticationService;
+  }
 
   private Collection<GrantedAuthority> getAuthorities(UserData userData) {
 
     List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>(2);
+
     if (userData.getRole() == 0) {
       authList.add(new SimpleGrantedAuthority("ROLE_USER"));
     } else {
       authList.add(new SimpleGrantedAuthority("ROLE_USER"));
       authList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
-
     return authList;
   }
 }

@@ -19,31 +19,41 @@ public class ProblemServiceImpl implements ProblemService {
 
   @Autowired
   private ProblemRepository problemRepository;
-
+  private SolutionEvaluator solutionEvaluator;
   private ProblemConverter problemConverter;
 
 
-
   public List<ProblemData> findAllProblems() {
-    Iterable<Problem> problemList = problemRepository.findAll();
 
+    Iterable<Problem> problemList = problemRepository.findAll();
     List<ProblemData> problemDataList = new ArrayList<>();
+
     for (Problem p : problemList) {
       problemDataList.add(problemConverter.convertToData(p));
     }
+
     return problemDataList;
   }
 
   public ProblemData findProblem(String problemName) throws WebServiceException {
+
     Problem problem = problemRepository.findOne(problemName);
-    if(problem==null){
-      throw new WebServiceException("problem "+problemName+" not found");
+
+    if (problem == null) {
+      throw new WebServiceException("problem " + problemName + " not found");
     }
+
     return problemConverter.convertToData(problem);
   }
 
   public void addProblem(ProblemData problemData) {
+
     problemRepository.save(problemConverter.convertToModel(problemData));
+  }
+
+  public List<String> validateProblem(ProblemData problemData, List<String> testList) throws WebServiceException {
+
+    return solutionEvaluator.validateOfficialSolution(problemData, testList);
   }
 
   public void removeProblem(String problemName) {
@@ -51,11 +61,14 @@ public class ProblemServiceImpl implements ProblemService {
   }
 
   public void updateProblem(ProblemData problemData) {
-
+    problemRepository.save(problemConverter.convertToModel(problemData));
   }
 
   public void setProblemConverter(ProblemConverter problemConverter) {
     this.problemConverter = problemConverter;
   }
 
+  public void setSolutionEvaluator(SolutionEvaluator solutionEvaluator) {
+    this.solutionEvaluator = solutionEvaluator;
+  }
 }

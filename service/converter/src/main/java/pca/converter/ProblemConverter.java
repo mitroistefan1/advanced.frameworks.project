@@ -12,6 +12,7 @@ public class ProblemConverter implements Converter<Problem, ProblemData> {
 
     problemData.setProblemName(model.getProblemName());
     problemData.setProblemStatement(model.getProblemStatement());
+    problemData.setOfficialSolution(model.getOfficialSolution());
 
     return problemData;
   }
@@ -22,6 +23,8 @@ public class ProblemConverter implements Converter<Problem, ProblemData> {
 
     problem.setProblemName(data.getProblemName());
     problem.setProblemStatement(data.getProblemStatement());
+    problem.setOfficialSolution(data.getOfficialSolution());
+
     return problem;
   }
 }

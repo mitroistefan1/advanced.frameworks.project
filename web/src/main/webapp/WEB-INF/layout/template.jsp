@@ -27,7 +27,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <tilesx:useAttribute name="current"/>
-
+<a href="?locale=ro">RO</a>|<a href="?locale=en">EN</a>
 <div class="container">
     <div class="header clearfix">
         <nav>
@@ -58,7 +58,7 @@
                 <ul class="nav navbar-nav">
                     <li class="${current=="index"?"active":""} "><a href='<spring:url value="/" />'>
                         <spring:message code="label.home"/></a></li>
-                    <li class="${current=="problem"?"active":""} "><a
+                    <li class="${current=="problems"?"active":""} "><a
                             href="<spring:url value="/problems" />"><spring:message code="label.problems"/></a></li>
                     <li><a href="#">Meetings</a></li>
                 </ul>

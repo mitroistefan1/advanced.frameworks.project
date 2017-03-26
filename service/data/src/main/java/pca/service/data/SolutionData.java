@@ -1,20 +1,14 @@
 package pca.service.data;
 
 
-import pca.persistence.model.Problem;
-import pca.persistence.model.User;
-
-import java.util.List;
-
 public class SolutionData {
 
   private int id;
-  private User user;
-  private Problem problem;
+  private String userName;
+  private String problemName;
   private String text;
   private int score;
   private String message;
-
 
   public int getId() {
     return id;
@@ -24,20 +18,20 @@ public class SolutionData {
     this.id = id;
   }
 
-  public User getUser() {
-    return user;
+  public String getUserName() {
+    return userName;
   }
 
-  public void setUser(User user) {
-    this.user = user;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
-  public Problem getProblem() {
-    return problem;
+  public String getProblemName() {
+    return problemName;
   }
 
-  public void setProblem(Problem problem) {
-    this.problem = problem;
+  public void setProblemName(String problemName) {
+    this.problemName = problemName;
   }
 
   public String getText() {

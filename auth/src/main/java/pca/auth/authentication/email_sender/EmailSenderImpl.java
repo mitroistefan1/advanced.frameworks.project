@@ -4,10 +4,11 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import pca.auth.exception.AuthException;
 
-import javax.naming.AuthenticationException;
 
 public class EmailSenderImpl implements EmailSender {
 
+  private String mailSubject;
+  private String mailText;
   private MailSender mailSender;
 
   public void sendEmail(String userEmail, String token) throws AuthException {
@@ -15,9 +16,8 @@ public class EmailSenderImpl implements EmailSender {
     SimpleMailMessage message = new SimpleMailMessage();
 
     message.setTo(userEmail);
-    message.setSubject("PCA account validation");
-    message.setText("For validation go to :http://localhost:8080/signup/validation/" + token);
-
+    message.setSubject(mailSubject);
+    message.setText(mailText + token);
     try {
       mailSender.send(message);
     } catch (Exception e) {
@@ -25,9 +25,15 @@ public class EmailSenderImpl implements EmailSender {
     }
   }
 
-
   public void setMailSender(MailSender mailSender) {
-
     this.mailSender = mailSender;
+  }
+
+  public void setMailSubject(String mailSubject) {
+    this.mailSubject = mailSubject;
+  }
+
+  public void setMailText(String mailText) {
+    this.mailText = mailText;
   }
 }

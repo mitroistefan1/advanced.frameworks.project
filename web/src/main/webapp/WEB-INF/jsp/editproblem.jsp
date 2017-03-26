@@ -2,10 +2,12 @@
 
 
 <%@ include file="../layout/taglib.jsp" %>
+${problem.problemName}
+
 <form:form commandName="problem">
     <div class="form-group">
-        <label><spring:message code="label.problemName"/></label>
-        <form:input path="problemName" class="form-control" value="${problem.problemName}"/>
+
+        <form:input type="hidden" path="problemName" class="form-control" value="${problem.problemName}"/>
     </div>
 
 

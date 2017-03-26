@@ -24,14 +24,13 @@ public class SolutionController {
   }
 
   @ExceptionHandler(WebServiceException.class)
-  @ResponseStatus(value= HttpStatus.NOT_FOUND)
-  public ModelAndView handleSolutionNotFoundException(HttpServletRequest request, Exception ex){
-
+  @ResponseStatus(value = HttpStatus.NOT_FOUND)
+  public ModelAndView handleSolutionNotFoundException(HttpServletRequest request, Exception ex) {
 
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.addObject("exception", ex.getMessage());
     modelAndView.setViewName("error");
+
     return modelAndView;
   }
-
 }

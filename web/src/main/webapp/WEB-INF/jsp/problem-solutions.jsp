@@ -16,12 +16,12 @@
     <c:forEach items="${solutions}" var="solution">
         <tr>
             <td>
-                    ${solution.user.userName}
+                    ${solution.userName}
             </td>
 
 
             <td>
-                    ${solution.problem.problemName}
+                    ${solution.problemName}
             </td>
 
 

@@ -14,5 +14,4 @@ public interface AuthenticationService {
   UserData getUserByToken(String userToken);
 
 
-
 }

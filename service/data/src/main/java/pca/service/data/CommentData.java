@@ -1,14 +1,12 @@
 package pca.service.data;
 
 
-import pca.persistence.model.Problem;
-
 public class CommentData {
 
   private int id;
-  private Problem problem;
+  private String problemName;
   private String body;
-  private String author;
+  private String userName;
 
   public int getId() {
     return id;
@@ -18,12 +16,12 @@ public class CommentData {
     this.id = id;
   }
 
-  public Problem getProblem() {
-    return problem;
+  public String getProblemName() {
+    return problemName;
   }
 
-  public void setProblem(Problem problem) {
-    this.problem = problem;
+  public void setProblemName(String problemName) {
+    this.problemName = problemName;
   }
 
   public String getBody() {
@@ -34,11 +32,11 @@ public class CommentData {
     this.body = body;
   }
 
-  public String getAuthor() {
-    return author;
+  public String getUserName() {
+    return userName;
   }
 
-  public void setAuthor(String author) {
-    this.author = author;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 }

@@ -4,8 +4,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 
@@ -21,6 +19,8 @@ public class User {
   private int role;
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
   private List<Solution> solutionList;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+  private List<Solution> commentList;
 
   public String getUserName() {
     return userName;
@@ -76,5 +76,13 @@ public class User {
 
   public void setSolutionList(List<Solution> solutionList) {
     this.solutionList = solutionList;
+  }
+
+  public List<Solution> getCommentList() {
+    return commentList;
+  }
+
+  public void setCommentList(List<Solution> commentList) {
+    this.commentList = commentList;
   }
 }

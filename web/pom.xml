@@ -80,13 +80,22 @@
             <artifactId>spring-security-taglibs</artifactId>
         </dependency>
 
+        <!--files upload-->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <!--files upload-->
+
     </dependencies>
 
     <build>
         <finalName>web</finalName>
     </build>
 </project>
-        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-
-
-

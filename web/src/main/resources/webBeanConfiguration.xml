@@ -5,38 +5,14 @@
 http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
 
-    <import resource="classpath:persistenceBeanConfiguration.xml"/>
+    <import resource="classpath:serviceBeanConfiguration.xml"/>
 
 
-    <bean id="commentService" class="pca.service.comment.CommentServiceImpl">
-        <property name="commentConverter" ref="commentConverter"/>
-        <property name="problemConverter" ref="probblemConverter"/>
-    </bean>
-
-    <bean id="problemService" class="pca.service.problem.ProblemServiceImpl">
-        <property name="problemConverter" ref="probblemConverter"/>
-
-    </bean>
-    <bean id="solutionService" class="pca.service.solution.SolutionServiceImpl">
-        <property name="solutionConverter" ref="solutionConverter"/>
-        <property name="problemConverter" ref="probblemConverter"/>
-        <property name="solutionEvaluator" ref="solutionEvaluator"/>
-    </bean>
-
-    <bean id="solutionEvaluator" class="pca.service.solution.evaluation.SolutionEvaluatorImpl">
-        <property name="testService" ref="testService"/>
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000"/>
     </bean>
 
 
-
-    <bean id="testService" class="pca.service.test.TestServiceImpl">
-        <property name="testConverter" ref="testConverter"/>
-        <property name="problemConverter" ref="probblemConverter"/>
-    </bean>
-
-    <bean id="userConverter" class="pca.converter.UserConverter"/>
-    <bean id="commentConverter" class="pca.converter.CommentConverter"/>
-    <bean id="probblemConverter" class="pca.converter.ProblemConverter"/>
-    <bean id="solutionConverter" class="pca.converter.SolutionConverter"/>
-    <bean id="testConverter" class="pca.converter.TestConverter"/>
 </beans>
+

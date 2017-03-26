@@ -1,10 +1,18 @@
 package pca.converter;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pca.persistence.model.Comment;
+import pca.persistence.repository.ProblemRepository;
+import pca.persistence.repository.UserRepository;
 import pca.service.data.CommentData;
 
 public class CommentConverter implements Converter<Comment, CommentData> {
+
+  @Autowired
+  private ProblemRepository problemRepository;
+  @Autowired
+  private UserRepository userRepository;
 
   public CommentData convertToData(Comment model) {
 
@@ -12,8 +20,9 @@ public class CommentConverter implements Converter<Comment, CommentData> {
 
     commentData.setId(model.getId());
     commentData.setBody(model.getBody());
-    commentData.setProblem(model.getProblem());
-    commentData.setAuthor(model.getAuthor());
+    commentData.setProblemName(model.getProblem().getProblemName());
+    commentData.setUserName(model.getUser().getUserName());
+
     return commentData;
   }
 
@@ -23,8 +32,9 @@ public class CommentConverter implements Converter<Comment, CommentData> {
 
     comment.setId(data.getId());
     comment.setBody(data.getBody());
-    comment.setProblem(data.getProblem());
-    comment.setAuthor(data.getAuthor());
+    comment.setProblem(problemRepository.findOne(data.getProblemName()));
+    comment.setUser(userRepository.findOne(data.getUserName()));
+
     return comment;
   }
 }

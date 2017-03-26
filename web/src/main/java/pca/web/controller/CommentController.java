@@ -11,10 +11,10 @@ import pca.service.comment.CommentService;
 public class CommentController {
 
   @Autowired
-  CommentService commentService;
+  private CommentService commentService;
 
-  @RequestMapping(value = "/problems/{problemName}/remove_comment/{commentId}", method = RequestMethod.GET)
-  public String removeComment(@PathVariable String problemName, @PathVariable int commentId) {
+  @RequestMapping(value = "/problems/{problemName}/comment/remove/{commentId}", method = RequestMethod.GET)
+  public String removeComment(@PathVariable int commentId) {
     commentService.deleteComment(commentId);
     return "redirect:/problems/{problemName}";
   }

@@ -1,7 +1,6 @@
 package pca.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,18 +22,19 @@ public class SignUpController {
     return new ModelAndView("signup", "command", new UserData());
   }
 
-  @RequestMapping(value =  "signup/validation/{userToken}", method = RequestMethod.GET)
+  @RequestMapping(value = "signup/validation/{userToken}", method = RequestMethod.GET)
   public String validate(@PathVariable String userToken) {
 
     UserData user = authenticationService.getUserByToken(userToken);
     user.setValid(true);
     authenticationService.updateUser(user);
+
     return "redirect:/";
   }
 
-  @RequestMapping(value =  "signup/validation/please-verify", method = RequestMethod.GET)
+  @RequestMapping(value = "signup/validation/please-verify", method = RequestMethod.GET)
   public String pleaseVerify() {
-    return "validation";
+    return "signup_validation";
   }
 
   @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -46,12 +46,12 @@ public class SignUpController {
 
   @ExceptionHandler(AuthException.class)
 
-  public ModelAndView handleAuthException(HttpServletRequest request, Exception ex){
+  public ModelAndView handleAuthException(HttpServletRequest request, Exception ex) {
 
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.addObject("exception", ex.getMessage());
     modelAndView.setViewName("error");
+
     return modelAndView;
   }
-
 }

@@ -8,18 +8,19 @@
    http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 
-    <import resource="classpath:META-INF/authBeanConfiguration.xml"/>
+    <import resource="classpath:authBeanConfiguration.xml"/>
 
     <security:http auto-config="true" use-expressions="true" access-denied-page="/error">
 
         <security:intercept-url pattern="/login" access="permitAll"/>
         <security:intercept-url pattern="/" access="permitAll"/>
-        <security:intercept-url pattern="/WEB-INF/jsp/index.jsp" access="permitAll"/>
-        <security:intercept-url pattern="/publichome" access="permitAll"/>
         <security:intercept-url pattern="/save" access="permitAll"/>
         <security:intercept-url pattern="/signup" access="permitAll"/>
         <security:intercept-url pattern="/signup/validation/**" access="permitAll"/>
-        <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/problems/remove/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/problems/edit/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/problems/addproblem/" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/problems/*/comment/remove/**" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
 
         <security:form-login
@@ -33,7 +34,7 @@
         <security:remember-me
                 token-validity-seconds="86400"
                 remember-me-parameter="remember-me"
-                data-source-ref="dataSource" />
+                data-source-ref="dataSource"/>
     </security:http>
 
     <security:authentication-manager alias="authenticationManager">

@@ -18,5 +18,6 @@ public interface ProblemService {
 
   void updateProblem(ProblemData problemData);
 
-  //void creatInputAndOutputFileForProblem(String problemName);
+  List<String> validateProblem(ProblemData problemData, List<String> testList) throws WebServiceException;
+
 }

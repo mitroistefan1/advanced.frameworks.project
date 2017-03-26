@@ -1,12 +1,10 @@
 package pca.service.data;
 
 
-import pca.persistence.model.Problem;
-
 public class TestData {
 
   private int id;
-  private Problem problem;
+  private String problemName;
   private String inputData;
   private String outputData;
 
@@ -18,12 +16,12 @@ public class TestData {
     this.id = id;
   }
 
-  public Problem getProblem() {
-    return problem;
+  public String getProblemName() {
+    return problemName;
   }
 
-  public void setProblem(Problem problem) {
-    this.problem = problem;
+  public void setProblemName(String problemName) {
+    this.problemName = problemName;
   }
 
   public String getInputData() {
